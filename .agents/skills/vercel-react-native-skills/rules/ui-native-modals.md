@@ -1,18 +1,18 @@
 ---
-title: Use Native Modals Over JS-Based Bottom Sheets
+title: Usa modales nativos en lugar de bottom sheets basados en JS
 impact: HIGH
-impactDescription: native performance, gestures, accessibility
+impactDescription: rendimiento, gestos y accesibilidad nativos
 tags: modals, bottom-sheet, native, react-navigation
 ---
 
-## Use Native Modals Over JS-Based Bottom Sheets
+## Usa modales nativos en lugar de bottom sheets basados en JS
 
-Use native `<Modal>` with `presentationStyle="formSheet"` or React Navigation
-v7's native form sheet instead of JS-based bottom sheet libraries. Native modals
-have built-in gestures, accessibility, and better performance. Rely on native UI
-for low-level primitives.
+Usa el `<Modal>` nativo con `presentationStyle="formSheet"` o el form sheet nativo de React Navigation
+v7 en lugar de librerías de bottom sheet basadas en JS. Los modales nativos
+tienen gestos integrados, accesibilidad y un mejor rendimiento. Confía en la UI nativa
+para las primitivas de bajo nivel.
 
-**Incorrect (JS-based bottom sheet):**
+**Incorrecto (bottom sheet basado en JS):**
 
 ```tsx
 import BottomSheet from 'custom-js-bottom-sheet'
@@ -33,7 +33,7 @@ function MyScreen() {
 }
 ```
 
-**Correct (native Modal with formSheet):**
+**Correcto (Modal nativo con formSheet):**
 
 ```tsx
 import { Modal, View, Text, Button } from 'react-native'
@@ -59,10 +59,10 @@ function MyScreen() {
 }
 ```
 
-**Correct (React Navigation v7 native form sheet):**
+**Correcto (form sheet nativo de React Navigation v7):**
 
 ```tsx
-// In your navigator
+// En tu navigator
 <Stack.Screen
   name='Details'
   component={DetailsScreen}
@@ -73,5 +73,5 @@ function MyScreen() {
 />
 ```
 
-Native modals provide swipe-to-dismiss, proper keyboard avoidance, and
-accessibility out of the box.
+Los modales nativos proporcionan swipe-to-dismiss, una evitación correcta del teclado y
+accesibilidad de forma predeterminada.

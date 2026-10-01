@@ -1,25 +1,25 @@
 ---
-title: Use Native Navigators for Navigation
+title: Usa navigators nativos para la navegación
 impact: HIGH
-impactDescription: native performance, platform-appropriate UI
+impactDescription: rendimiento nativo, UI apropiada para cada plataforma
 tags: navigation, react-navigation, expo-router, native-stack, tabs
 ---
 
-## Use Native Navigators for Navigation
+## Usa navigators nativos para la navegación
 
-Always use native navigators instead of JS-based ones. Native navigators use
-platform APIs (UINavigationController on iOS, Fragment on Android) for better
-performance and native behavior.
+Usa siempre navigators nativos en lugar de los basados en JS. Los navigators nativos usan
+las APIs de la plataforma (UINavigationController en iOS, Fragment en Android) para un mejor
+rendimiento y un comportamiento nativo.
 
-**For stacks:** Use `@react-navigation/native-stack` or expo-router's default
-stack (which uses native-stack). Avoid `@react-navigation/stack`.
+**Para stacks:** Usa `@react-navigation/native-stack` o el stack por defecto de expo-router
+(que usa native-stack). Evita `@react-navigation/stack`.
 
-**For tabs:** Use `react-native-bottom-tabs` (native) or expo-router's native
-tabs. Avoid `@react-navigation/bottom-tabs` when native feel matters.
+**Para tabs:** Usa `react-native-bottom-tabs` (nativo) o los native tabs de
+expo-router. Evita `@react-navigation/bottom-tabs` cuando la sensación nativa sea importante.
 
-### Stack Navigation
+### Navegación con stack
 
-**Incorrect (JS stack navigator):**
+**Incorrecto (stack navigator de JS):**
 
 ```tsx
 import { createStackNavigator } from '@react-navigation/stack'
@@ -36,7 +36,7 @@ function App() {
 }
 ```
 
-**Correct (native stack with react-navigation):**
+**Correcto (native stack con react-navigation):**
 
 ```tsx
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -53,7 +53,7 @@ function App() {
 }
 ```
 
-**Correct (expo-router uses native stack by default):**
+**Correcto (expo-router usa native stack por defecto):**
 
 ```tsx
 // app/_layout.tsx
@@ -64,9 +64,9 @@ export default function Layout() {
 }
 ```
 
-### Tab Navigation
+### Navegación con tabs
 
-**Incorrect (JS bottom tabs):**
+**Incorrecto (bottom tabs de JS):**
 
 ```tsx
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -83,7 +83,7 @@ function App() {
 }
 ```
 
-**Correct (native bottom tabs with react-navigation):**
+**Correcto (native bottom tabs con react-navigation):**
 
 ```tsx
 import { createNativeBottomTabNavigator } from '@bottom-tabs/react-navigation'
@@ -112,7 +112,7 @@ function App() {
 }
 ```
 
-**Correct (expo-router native tabs):**
+**Correcto (native tabs de expo-router):**
 
 ```tsx
 // app/(tabs)/_layout.tsx
@@ -134,14 +134,14 @@ export default function TabLayout() {
 }
 ```
 
-On iOS, native tabs automatically enable `contentInsetAdjustmentBehavior` on the
-first `ScrollView` at the root of each tab screen, so content scrolls correctly
-behind the translucent tab bar. If you need to disable this, use
-`disableAutomaticContentInsets` on the trigger.
+En iOS, los native tabs habilitan automáticamente `contentInsetAdjustmentBehavior` en el
+primer `ScrollView` en la raíz de cada pantalla de tab, de modo que el contenido se desplaza correctamente
+detrás de la tab bar translúcida. Si necesitas deshabilitar esto, usa
+`disableAutomaticContentInsets` en el trigger.
 
-### Prefer Native Header Options Over Custom Components
+### Prefiere las opciones de header nativas en lugar de componentes personalizados
 
-**Incorrect (custom header component):**
+**Incorrecto (componente de header personalizado):**
 
 ```tsx
 <Stack.Screen
@@ -153,7 +153,7 @@ behind the translucent tab bar. If you need to disable this, use
 />
 ```
 
-**Correct (native header options):**
+**Correcto (opciones de header nativas):**
 
 ```tsx
 <Stack.Screen
@@ -169,20 +169,20 @@ behind the translucent tab bar. If you need to disable this, use
 />
 ```
 
-Native headers support iOS large titles, search bars, blur effects, and proper
-safe area handling automatically.
+Los headers nativos soportan automáticamente los large titles de iOS, las barras de búsqueda, los efectos de desenfoque y el manejo
+correcto de la safe area.
 
-### Why Native Navigators
+### Por qué navigators nativos
 
-- **Performance**: Native transitions and gestures run on the UI thread
-- **Platform behavior**: Automatic iOS large titles, Android material design
-- **System integration**: Scroll-to-top on tab tap, PiP avoidance, proper safe
-  areas
-- **Accessibility**: Platform accessibility features work automatically
+- **Rendimiento**: Las transiciones y los gestos nativos se ejecutan en el UI thread
+- **Comportamiento de la plataforma**: Large titles automáticos en iOS, material design en Android
+- **Integración con el sistema**: Scroll-to-top al tocar el tab, evitación de PiP, safe
+  areas correctas
+- **Accesibilidad**: Las funcionalidades de accesibilidad de la plataforma funcionan automáticamente
 
-Reference:
+Referencia:
 
 - [React Navigation Native Stack](https://reactnavigation.org/docs/native-stack-navigator)
-- [React Native Bottom Tabs with React Navigation](https://oss.callstack.com/react-native-bottom-tabs/docs/guides/usage-with-react-navigation)
-- [React Native Bottom Tabs with Expo Router](https://oss.callstack.com/react-native-bottom-tabs/docs/guides/usage-with-expo-router)
+- [React Native Bottom Tabs con React Navigation](https://oss.callstack.com/react-native-bottom-tabs/docs/guides/usage-with-react-navigation)
+- [React Native Bottom Tabs con Expo Router](https://oss.callstack.com/react-native-bottom-tabs/docs/guides/usage-with-expo-router)
 - [Expo Router Native Tabs](https://docs.expo.dev/router/advanced/native-tabs)

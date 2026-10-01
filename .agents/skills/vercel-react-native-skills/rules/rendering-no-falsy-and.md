@@ -1,17 +1,17 @@
 ---
-title: Never Use && with Potentially Falsy Values
+title: Nunca uses && con valores potencialmente falsy
 impact: CRITICAL
-impactDescription: prevents production crash
+impactDescription: evita crashes en producción
 tags: rendering, conditional, jsx, crash
 ---
 
-## Never Use && with Potentially Falsy Values
+## Nunca uses && con valores potencialmente falsy
 
-Never use `{value && <Component />}` when `value` could be an empty string or
-`0`. These are falsy but JSX-renderable—React Native will try to render them as
-text outside a `<Text>` component, causing a hard crash in production.
+Nunca uses `{value && <Component />}` cuando `value` pueda ser un string vacío o
+`0`. Estos son falsy pero renderizables en JSX: React Native intentará renderizarlos como
+texto fuera de un componente `<Text>`, lo que provoca un crash grave en producción.
 
-**Incorrect (crashes if count is 0 or name is ""):**
+**Incorrecto (crash si count es 0 o name es ""):**
 
 ```tsx
 function Profile({ name, count }: { name: string; count: number }) {
@@ -22,10 +22,10 @@ function Profile({ name, count }: { name: string; count: number }) {
     </View>
   )
 }
-// If name="" or count=0, renders the falsy value → crash
+// Si name="" o count=0, renderiza el valor falsy → crash
 ```
 
-**Correct (ternary with null):**
+**Correcto (ternario con null):**
 
 ```tsx
 function Profile({ name, count }: { name: string; count: number }) {
@@ -38,7 +38,7 @@ function Profile({ name, count }: { name: string; count: number }) {
 }
 ```
 
-**Correct (explicit boolean coercion):**
+**Correcto (conversión explícita a booleano):**
 
 ```tsx
 function Profile({ name, count }: { name: string; count: number }) {
@@ -51,7 +51,7 @@ function Profile({ name, count }: { name: string; count: number }) {
 }
 ```
 
-**Best (early return):**
+**Mejor (early return):**
 
 ```tsx
 function Profile({ name, count }: { name: string; count: number }) {
@@ -66,9 +66,9 @@ function Profile({ name, count }: { name: string; count: number }) {
 }
 ```
 
-Early returns are clearest. When using conditionals inline, prefer ternary or
-explicit boolean checks.
+Los early returns son lo más claro. Al usar condicionales inline, prefiere el ternario o
+las verificaciones booleanas explícitas.
 
-**Lint rule:** Enable `react/jsx-no-leaked-render` from
+**Regla de lint:** Habilita `react/jsx-no-leaked-render` de
 [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-leaked-render.md)
-to catch this automatically.
+para detectar esto automáticamente.

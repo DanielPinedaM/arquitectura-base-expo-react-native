@@ -1,16 +1,16 @@
 ---
-title: Load fonts natively at build time
+title: Carga las fuentes de forma nativa en tiempo de build
 impact: LOW
-impactDescription: fonts available at launch, no async loading
+impactDescription: fuentes disponibles al iniciar, sin carga asíncrona
 tags: fonts, expo, performance, config-plugin
 ---
 
-## Use Expo Config Plugin for Font Loading
+## Usa el config plugin de Expo para cargar fuentes
 
-Use the `expo-font` config plugin to embed fonts at build time instead of
-`useFonts` or `Font.loadAsync`. Embedded fonts are more efficient.
+Usa el config plugin de `expo-font` para incrustar las fuentes en tiempo de build en lugar de
+`useFonts` o `Font.loadAsync`. Las fuentes incrustadas son más eficientes.
 
-**Incorrect (async font loading):**
+**Incorrecto (carga asíncrona de fuentes):**
 
 ```tsx
 import { useFonts } from 'expo-font'
@@ -33,7 +33,7 @@ function App() {
 }
 ```
 
-**Correct (config plugin, fonts embedded at build):**
+**Correcto (config plugin, fuentes incrustadas en el build):**
 
 ```json
 // app.json
@@ -55,7 +55,7 @@ function App() {
 import { Text, View } from 'react-native'
 
 function App() {
-  // No loading state needed—font is already available
+  // No se necesita un estado de carga: la fuente ya está disponible
   return (
     <View>
       <Text style={{ fontFamily: 'Geist-Bold' }}>Hello</Text>
@@ -64,8 +64,8 @@ function App() {
 }
 ```
 
-After adding fonts to the config plugin, run `npx expo prebuild` and rebuild the
-native app.
+Después de agregar las fuentes al config plugin, ejecuta `npx expo prebuild` y vuelve a hacer build de la
+app nativa.
 
-Reference:
-[Expo Font Documentation](https://docs.expo.dev/versions/latest/sdk/font/)
+Referencia:
+[Documentación de Expo Font](https://docs.expo.dev/versions/latest/sdk/font/)

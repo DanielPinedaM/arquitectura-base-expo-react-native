@@ -1,16 +1,16 @@
 ---
-title: Wrap Strings in Text Components
+title: Envuelve los strings en componentes Text
 impact: CRITICAL
-impactDescription: prevents runtime crash
+impactDescription: evita crashes en runtime
 tags: rendering, text, core
 ---
 
-## Wrap Strings in Text Components
+## Envuelve los strings en componentes Text
 
-Strings must be rendered inside `<Text>`. React Native crashes if a string is a
-direct child of `<View>`.
+Los strings deben renderizarse dentro de `<Text>`. React Native hace crash si un string es un
+hijo directo de `<View>`.
 
-**Incorrect (crashes):**
+**Incorrecto (hace crash):**
 
 ```tsx
 import { View } from 'react-native'
@@ -21,7 +21,7 @@ function Greeting({ name }: { name: string }) {
 // Error: Text strings must be rendered within a <Text> component.
 ```
 
-**Correct:**
+**Correcto:**
 
 ```tsx
 import { View, Text } from 'react-native'

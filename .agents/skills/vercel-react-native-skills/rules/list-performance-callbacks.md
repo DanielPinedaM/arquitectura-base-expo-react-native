@@ -1,25 +1,25 @@
 ---
-title: Hoist callbacks to the root of lists
+title: Haz hoisting de los callbacks a la raíz de las listas
 impact: MEDIUM
-impactDescription: Fewer re-renders and faster lists
+impactDescription: Menos re-renders y listas más rápidas
 tags: tag1, tag2
 ---
 
-## List performance callbacks
+## Callbacks para el rendimiento de listas
 
-**Impact: HIGH (Fewer re-renders and faster lists)**
+**Impacto: HIGH (Menos re-renders y listas más rápidas)**
 
-When passing callback functions to list items, create a single instance of the
-callback at the root of the list. Items should then call it with a unique
-identifier.
+Al pasar funciones callback a los elementos de una lista, crea una única instancia del
+callback en la raíz de la lista. Luego, los elementos deben llamarlo con un identificador
+único.
 
-**Incorrect (creates a new callback on each render):**
+**Incorrecto (crea un nuevo callback en cada render):**
 
 ```typescript
 return (
   <LegendList
     renderItem={({ item }) => {
-      // bad: creates a new callback on each render
+      // mal: crea un nuevo callback en cada render
       const onPress = () => handlePress(item.id)
       return <Item key={item.id} item={item} onPress={onPress} />
     }}
@@ -27,7 +27,7 @@ return (
 )
 ```
 
-**Correct (a single function instance passed to each item):**
+**Correcto (una única instancia de la función pasada a cada elemento):**
 
 ```typescript
 const onPress = useCallback(() => handlePress(item.id), [handlePress, item.id])
@@ -41,4 +41,4 @@ return (
 )
 ```
 
-Reference: [Link to documentation or resource](https://example.com)
+Referencia: [Enlace a la documentación o recurso](https://example.com)

@@ -1,121 +1,121 @@
 ---
 name: vercel-react-native-skills
 description:
-  React Native and Expo best practices for building performant mobile apps. Use
-  when building React Native components, optimizing list performance,
-  implementing animations, or working with native modules. Triggers on tasks
-  involving React Native, Expo, mobile performance, or native platform APIs.
+  Buenas prácticas de React Native y Expo para construir apps móviles con buen rendimiento. Úsala
+  al construir componentes de React Native, optimizar el rendimiento de las listas,
+  implementar animaciones o trabajar con módulos nativos. Se activa en tareas
+  que involucran React Native, Expo, rendimiento móvil o APIs nativas de la plataforma.
 license: MIT
 metadata:
   author: vercel
   version: '1.0.0'
 ---
 
-# React Native Skills
+# Skills de React Native
 
-Comprehensive best practices for React Native and Expo applications. Contains
-rules across multiple categories covering performance, animations, UI patterns,
-and platform-specific optimizations.
+Buenas prácticas completas para aplicaciones de React Native y Expo. Contiene
+reglas en múltiples categorías que cubren rendimiento, animaciones, patrones de UI
+y optimizaciones específicas de cada plataforma.
 
-## When to Apply
+## Cuándo aplicarla
 
-Reference these guidelines when:
+Consulta estos lineamientos cuando:
 
-- Building React Native or Expo apps
-- Optimizing list and scroll performance
-- Implementing animations with Reanimated
-- Working with images and media
-- Configuring native modules or fonts
-- Structuring monorepo projects with native dependencies
+- Construyas apps de React Native o Expo
+- Optimices el rendimiento de las listas y del scroll
+- Implementes animaciones con Reanimated
+- Trabajes con imágenes y multimedia
+- Configures módulos nativos o fuentes
+- Estructures proyectos monorepo con dependencias nativas
 
-## Rule Categories by Priority
+## Categorías de reglas por prioridad
 
-| Priority | Category         | Impact   | Prefix               |
-| -------- | ---------------- | -------- | -------------------- |
-| 1        | List Performance | CRITICAL | `list-performance-`  |
-| 2        | Animation        | HIGH     | `animation-`         |
-| 3        | Navigation       | HIGH     | `navigation-`        |
-| 4        | UI Patterns      | HIGH     | `ui-`                |
-| 5        | State Management | MEDIUM   | `react-state-`       |
-| 6        | Rendering        | MEDIUM   | `rendering-`         |
-| 7        | Monorepo         | MEDIUM   | `monorepo-`          |
-| 8        | Configuration    | LOW      | `fonts-`, `imports-` |
+| Prioridad | Categoría                | Impacto  | Prefijo              |
+| --------- | ------------------------ | -------- | -------------------- |
+| 1         | Rendimiento de listas    | CRITICAL | `list-performance-`  |
+| 2         | Animación                | HIGH     | `animation-`         |
+| 3         | Navegación               | HIGH     | `navigation-`        |
+| 4         | Patrones de UI           | HIGH     | `ui-`                |
+| 5         | Gestión del estado       | MEDIUM   | `react-state-`       |
+| 6         | Renderizado              | MEDIUM   | `rendering-`         |
+| 7         | Monorepo                 | MEDIUM   | `monorepo-`          |
+| 8         | Configuración            | LOW      | `fonts-`, `imports-` |
 
-## Quick Reference
+## Referencia rápida
 
-### 1. List Performance (CRITICAL)
+### 1. Rendimiento de listas (CRITICAL)
 
-- `list-performance-virtualize` - Use FlashList for large lists
-- `list-performance-item-memo` - Memoize list item components
-- `list-performance-callbacks` - Stabilize callback references
-- `list-performance-inline-objects` - Avoid inline style objects
-- `list-performance-function-references` - Extract functions outside render
-- `list-performance-images` - Optimize images in lists
-- `list-performance-item-expensive` - Move expensive work outside items
-- `list-performance-item-types` - Use item types for heterogeneous lists
+- `list-performance-virtualize` - Usa FlashList para listas grandes
+- `list-performance-item-memo` - Memoiza los componentes de los elementos de la lista
+- `list-performance-callbacks` - Estabiliza las referencias de los callbacks
+- `list-performance-inline-objects` - Evita objetos de estilo inline
+- `list-performance-function-references` - Extrae las funciones fuera del render
+- `list-performance-images` - Optimiza las imágenes en las listas
+- `list-performance-item-expensive` - Mueve el trabajo costoso fuera de los elementos
+- `list-performance-item-types` - Usa tipos de elementos para listas heterogéneas
 
-### 2. Animation (HIGH)
+### 2. Animación (HIGH)
 
-- `animation-gpu-properties` - Animate only transform and opacity
-- `animation-derived-value` - Use useDerivedValue for computed animations
-- `animation-gesture-detector-press` - Use Gesture.Tap instead of Pressable
+- `animation-gpu-properties` - Anima solo transform y opacity
+- `animation-derived-value` - Usa useDerivedValue para animaciones calculadas
+- `animation-gesture-detector-press` - Usa Gesture.Tap en lugar de Pressable
 
-### 3. Navigation (HIGH)
+### 3. Navegación (HIGH)
 
-- `navigation-native-navigators` - Use native stack and native tabs over JS navigators
+- `navigation-native-navigators` - Usa native stack y native tabs en lugar de navigators de JS
 
-### 4. UI Patterns (HIGH)
+### 4. Patrones de UI (HIGH)
 
-- `ui-expo-image` - Use expo-image for all images
-- `ui-image-gallery` - Use Galeria for image lightboxes
-- `ui-pressable` - Use Pressable over TouchableOpacity
-- `ui-safe-area-scroll` - Handle safe areas in ScrollViews
-- `ui-scrollview-content-inset` - Use contentInset for headers
-- `ui-menus` - Use native context menus
-- `ui-native-modals` - Use native modals when possible
-- `ui-measure-views` - Use onLayout, not measure()
-- `ui-styling` - Use StyleSheet.create or Nativewind
+- `ui-expo-image` - Usa expo-image para todas las imágenes
+- `ui-image-gallery` - Usa Galeria para los lightboxes de imágenes
+- `ui-pressable` - Usa Pressable en lugar de TouchableOpacity
+- `ui-safe-area-scroll` - Maneja las safe areas en los ScrollViews
+- `ui-scrollview-content-inset` - Usa contentInset para los headers
+- `ui-menus` - Usa context menus nativos
+- `ui-native-modals` - Usa modales nativos cuando sea posible
+- `ui-measure-views` - Usa onLayout, no measure()
+- `ui-styling` - Usa StyleSheet.create o Nativewind
 
-### 5. State Management (MEDIUM)
+### 5. Gestión del estado (MEDIUM)
 
-- `react-state-minimize` - Minimize state subscriptions
-- `react-state-dispatcher` - Use dispatcher pattern for callbacks
-- `react-state-fallback` - Show fallback on first render
-- `react-compiler-destructure-functions` - Destructure for React Compiler
-- `react-compiler-reanimated-shared-values` - Handle shared values with compiler
+- `react-state-minimize` - Minimiza las suscripciones al estado
+- `react-state-dispatcher` - Usa el patrón dispatcher para los callbacks
+- `react-state-fallback` - Muestra un fallback en el primer render
+- `react-compiler-destructure-functions` - Desestructura para React Compiler
+- `react-compiler-reanimated-shared-values` - Maneja los shared values con el compiler
 
-### 6. Rendering (MEDIUM)
+### 6. Renderizado (MEDIUM)
 
-- `rendering-text-in-text-component` - Wrap text in Text components
-- `rendering-no-falsy-and` - Avoid falsy && for conditional rendering
+- `rendering-text-in-text-component` - Envuelve el texto en componentes Text
+- `rendering-no-falsy-and` - Evita && con valores falsy para el renderizado condicional
 
 ### 7. Monorepo (MEDIUM)
 
-- `monorepo-native-deps-in-app` - Keep native dependencies in app package
-- `monorepo-single-dependency-versions` - Use single versions across packages
+- `monorepo-native-deps-in-app` - Mantén las dependencias nativas en el paquete de la app
+- `monorepo-single-dependency-versions` - Usa versiones únicas en todos los paquetes
 
-### 8. Configuration (LOW)
+### 8. Configuración (LOW)
 
-- `fonts-config-plugin` - Use config plugins for custom fonts
-- `imports-design-system-folder` - Organize design system imports
-- `js-hoist-intl` - Hoist Intl object creation
+- `fonts-config-plugin` - Usa config plugins para las fuentes personalizadas
+- `imports-design-system-folder` - Organiza los imports del design system
+- `js-hoist-intl` - Haz hoisting de la creación de objetos Intl
 
-## How to Use
+## Cómo usarla
 
-Read individual rule files for detailed explanations and code examples:
+Lee los archivos de reglas individuales para ver explicaciones detalladas y ejemplos de código:
 
 ```
 rules/list-performance-virtualize.md
 rules/animation-gpu-properties.md
 ```
 
-Each rule file contains:
+Cada archivo de regla contiene:
 
-- Brief explanation of why it matters
-- Incorrect code example with explanation
-- Correct code example with explanation
-- Additional context and references
+- Una breve explicación de por qué es importante
+- Un ejemplo de código incorrecto con su explicación
+- Un ejemplo de código correcto con su explicación
+- Contexto adicional y referencias
 
-## Full Compiled Document
+## Documento compilado completo
 
-For the complete guide with all rules expanded: `AGENTS.md`
+Para la guía completa con todas las reglas desarrolladas: `AGENTS.md`

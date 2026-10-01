@@ -1,27 +1,27 @@
 ---
-title: Optimize List Performance with Stable Object References
+title: Optimiza el rendimiento de las listas con referencias de objetos estables
 impact: CRITICAL
-impactDescription: virtualization relies on reference stability
+impactDescription: la virtualización depende de la estabilidad de las referencias
 tags: lists, performance, flatlist, virtualization
 ---
 
-## Optimize List Performance with Stable Object References
+## Optimiza el rendimiento de las listas con referencias de objetos estables
 
-Don't map or filter data before passing to virtualized lists. Virtualization
-relies on object reference stability to know what changed—new references cause
-full re-renders of all visible items. Attempt to prevent frequent renders at the
-list-parent level.
+No hagas map ni filter de los datos antes de pasarlos a listas virtualizadas. La virtualización
+depende de la estabilidad de las referencias de los objetos para saber qué cambió: las nuevas referencias provocan
+re-renders completos de todos los elementos visibles. Intenta evitar renders frecuentes a
+nivel del padre de la lista.
 
-Where needed, use context selectors within list items.
+Cuando sea necesario, usa selectores de context dentro de los elementos de la lista.
 
-**Incorrect (creates new object references on every keystroke):**
+**Incorrecto (crea nuevas referencias de objetos en cada pulsación de tecla):**
 
 ```tsx
 function DomainSearch() {
   const { keyword, setKeyword } = useKeywordZustandState()
   const { data: tlds } = useTlds()
 
-  // Bad: creates new objects on every render, reparenting the entire list on every keystroke
+  // Mal: crea nuevos objetos en cada render, reasignando el padre de toda la lista en cada pulsación de tecla
   const domains = tlds.map((tld) => ({
     domain: `${keyword}.${tld.name}`,
     tld: tld.name,
@@ -40,7 +40,7 @@ function DomainSearch() {
 }
 ```
 
-**Correct (stable references, transform inside items):**
+**Correcto (referencias estables, transforma dentro de los elementos):**
 
 ```tsx
 const renderItem = ({ item }) => <DomainItem tld={item} />
@@ -50,7 +50,7 @@ function DomainSearch() {
 
   return (
     <LegendList
-      // good: as long as the data is stable, LegendList will not re-render the entire list
+      // bien: mientras los datos sean estables, LegendList no hará re-render de toda la lista
       data={tlds}
       renderItem={renderItem}
     />
@@ -58,30 +58,30 @@ function DomainSearch() {
 }
 
 function DomainItem({ tld }: { tld: Tld }) {
-  // good: transform within items, and don't pass the dynamic data as a prop
-  // good: use a selector function from zustand to receive a stable string back
+  // bien: transforma dentro de los elementos y no pases los datos dinámicos como prop
+  // bien: usa una función selector de zustand para recibir de vuelta un string estable
   const domain = useKeywordZustandState((s) => s.keyword + '.' + tld.name)
   return <Text>{domain}</Text>
 }
 ```
 
-**Updating parent array reference:**
+**Actualizar la referencia del array padre:**
 
-Creating a new array instance can be okay, as long as its inner object
-references are stable. For instance, if you sort a list of objects:
+Crear una nueva instancia del array puede estar bien, siempre que las referencias de sus objetos
+internos sean estables. Por ejemplo, si ordenas una lista de objetos:
 
 ```tsx
-// good: creates a new array instance without mutating the inner objects
-// good: parent array reference is unaffected by typing and updating "keyword"
+// bien: crea una nueva instancia del array sin mutar los objetos internos
+// bien: la referencia del array padre no se ve afectada al escribir y actualizar "keyword"
 const sortedTlds = tlds.toSorted((a, b) => a.name.localeCompare(b.name))
 
 return <LegendList data={sortedTlds} renderItem={renderItem} />
 ```
 
-Even though this creates a new array instance `sortedTlds`, the inner object
-references are stable.
+Aunque esto crea una nueva instancia del array `sortedTlds`, las referencias de los objetos
+internos son estables.
 
-**With zustand for dynamic data (avoids parent re-renders):**
+**Con zustand para datos dinámicos (evita re-renders del padre):**
 
 ```tsx
 const useSearchStore = create<{ keyword: string }>(() => ({ keyword: '' }))
@@ -94,7 +94,7 @@ function DomainSearch() {
       <SearchInput />
       <LegendList
         data={tlds}
-        // if you aren't using React Compiler, wrap renderItem with useCallback
+        // si no estás usando React Compiler, envuelve renderItem con useCallback
         renderItem={({ item }) => <DomainItem tld={item} />}
       />
     </>
@@ -102,23 +102,23 @@ function DomainSearch() {
 }
 
 function DomainItem({ tld }: { tld: Tld }) {
-  // Select only what you need—component only re-renders when keyword changes
+  // Selecciona solo lo que necesitas: el componente solo hace re-render cuando cambia keyword
   const keyword = useSearchStore((s) => s.keyword)
   const domain = `${keyword}.${tld.name}`
   return <Text>{domain}</Text>
 }
 ```
 
-Virtualization can now skip items that haven't changed when typing. Only visible
-items (~20) re-render on keystroke, rather than the parent.
+Ahora la virtualización puede omitir los elementos que no han cambiado al escribir. Solo los elementos
+visibles (~20) hacen re-render en cada pulsación de tecla, en lugar del padre.
 
-**Deriving state within list items based on parent data (avoids parent
-re-renders):**
+**Derivar el estado dentro de los elementos de la lista a partir de los datos del padre (evita re-renders
+del padre):**
 
-For components where the data is conditional based on the parent state, this
-pattern is even more important. For example, if you are checking if an item is
-favorited, toggling favorites only re-renders one component if the item itself
-is in charge of accessing the state rather than the parent:
+Para los componentes donde los datos son condicionales según el estado del padre, este
+patrón es aún más importante. Por ejemplo, si estás verificando si un elemento está
+marcado como favorito, alternar los favoritos solo hace re-render de un componente si el propio elemento
+se encarga de acceder al estado en lugar del padre:
 
 ```tsx
 function DomainItemFavoriteButton({ tld }: { tld: Tld }) {
@@ -127,6 +127,6 @@ function DomainItemFavoriteButton({ tld }: { tld: Tld }) {
 }
 ```
 
-Note: if you're using the React Compiler, you can read React Context values
-directly within list items. Although this is slightly slower than using a
-Zustand selector in most cases, the effect may be negligible.
+Nota: si estás usando React Compiler, puedes leer los valores de React Context
+directamente dentro de los elementos de la lista. Aunque esto es ligeramente más lento que usar un
+selector de Zustand en la mayoría de los casos, el efecto puede ser insignificante.

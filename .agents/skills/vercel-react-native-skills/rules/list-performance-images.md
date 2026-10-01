@@ -1,23 +1,23 @@
 ---
-title: Use Compressed Images in Lists
+title: Usa imágenes comprimidas en las listas
 impact: HIGH
-impactDescription: faster load times, less memory
+impactDescription: tiempos de carga más rápidos, menos memoria
 tags: lists, images, performance, optimization
 ---
 
-## Use Compressed Images in Lists
+## Usa imágenes comprimidas en las listas
 
-Always load compressed, appropriately-sized images in lists. Full-resolution
-images consume excessive memory and cause scroll jank. Request thumbnails from
-your server or use an image CDN with resize parameters.
+Carga siempre imágenes comprimidas y de tamaño apropiado en las listas. Las imágenes en resolución
+completa consumen memoria excesiva y provocan jank en el scroll. Solicita thumbnails a
+tu servidor o usa un CDN de imágenes con parámetros de redimensionamiento.
 
-**Incorrect (full-resolution images):**
+**Incorrecto (imágenes en resolución completa):**
 
 ```tsx
 function ProductItem({ product }: { product: Product }) {
   return (
     <View>
-      {/* 4000x3000 image loaded for a 100x100 thumbnail */}
+      {/* Imagen de 4000x3000 cargada para un thumbnail de 100x100 */}
       <Image
         source={{ uri: product.imageUrl }}
         style={{ width: 100, height: 100 }}
@@ -28,11 +28,11 @@ function ProductItem({ product }: { product: Product }) {
 }
 ```
 
-**Correct (request appropriately-sized image):**
+**Correcto (solicita una imagen de tamaño apropiado):**
 
 ```tsx
 function ProductItem({ product }: { product: Product }) {
-  // Request a 200x200 image (2x for retina)
+  // Solicita una imagen de 200x200 (2x para retina)
   const thumbnailUrl = `${product.imageUrl}?w=200&h=200&fit=cover`
 
   return (
@@ -48,6 +48,6 @@ function ProductItem({ product }: { product: Product }) {
 }
 ```
 
-Use an optimized image component with built-in caching and placeholder support,
-such as `expo-image` or `SolitoImage` (which uses `expo-image` under the hood).
-Request images at 2x the display size for retina screens.
+Usa un componente de imagen optimizado con soporte integrado de caché y placeholders,
+como `expo-image` o `SolitoImage` (que usa `expo-image` internamente).
+Solicita las imágenes al doble (2x) del tamaño de visualización para las pantallas retina.

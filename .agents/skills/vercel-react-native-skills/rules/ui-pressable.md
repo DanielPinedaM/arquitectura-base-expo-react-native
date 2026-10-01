@@ -1,16 +1,16 @@
 ---
-title: Use Pressable Instead of Touchable Components
+title: Usa Pressable en lugar de los componentes Touchable
 impact: LOW
-impactDescription: modern API, more flexible
+impactDescription: API moderna, más flexible
 tags: ui, pressable, touchable, gestures
 ---
 
-## Use Pressable Instead of Touchable Components
+## Usa Pressable en lugar de los componentes Touchable
 
-Never use `TouchableOpacity` or `TouchableHighlight`. Use `Pressable` from
-`react-native` or `react-native-gesture-handler` instead.
+Nunca uses `TouchableOpacity` ni `TouchableHighlight`. En su lugar, usa `Pressable` de
+`react-native` o de `react-native-gesture-handler`.
 
-**Incorrect (legacy Touchable components):**
+**Incorrecto (componentes Touchable legacy):**
 
 ```tsx
 import { TouchableOpacity } from 'react-native'
@@ -24,7 +24,7 @@ function MyButton({ onPress }: { onPress: () => void }) {
 }
 ```
 
-**Correct (Pressable):**
+**Correcto (Pressable):**
 
 ```tsx
 import { Pressable } from 'react-native'
@@ -38,7 +38,7 @@ function MyButton({ onPress }: { onPress: () => void }) {
 }
 ```
 
-**Correct (Pressable from gesture handler for lists):**
+**Correcto (Pressable de gesture handler para listas):**
 
 ```tsx
 import { Pressable } from 'react-native-gesture-handler'
@@ -52,10 +52,10 @@ function ListItem({ onPress }: { onPress: () => void }) {
 }
 ```
 
-Use `react-native-gesture-handler` Pressable inside scrollable lists for better
-gesture coordination, as long as you are using the ScrollView from
-`react-native-gesture-handler` as well.
+Usa el Pressable de `react-native-gesture-handler` dentro de listas desplazables para una mejor
+coordinación de gestos, siempre que también estés usando el ScrollView de
+`react-native-gesture-handler`.
 
-**For animated press states (scale, opacity changes):** Use `GestureDetector`
-with Reanimated shared values instead of Pressable's style callback. See the
-`animation-gesture-detector-press` rule.
+**Para estados de press animados (cambios de scale, opacity):** Usa `GestureDetector`
+con shared values de Reanimated en lugar del style callback de Pressable. Consulta la
+regla `animation-gesture-detector-press`.

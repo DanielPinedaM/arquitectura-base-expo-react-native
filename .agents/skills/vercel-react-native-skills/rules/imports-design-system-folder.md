@@ -1,16 +1,16 @@
 ---
-title: Import from Design System Folder
+title: Importa desde la carpeta del design system
 impact: LOW
-impactDescription: enables global changes and easy refactoring
+impactDescription: permite cambios globales y una refactorización sencilla
 tags: imports, architecture, design-system
 ---
 
-## Import from Design System Folder
+## Importa desde la carpeta del design system
 
-Re-export dependencies from a design system folder. App code imports from there,
-not directly from packages. This enables global changes and easy refactoring.
+Re-exporta las dependencias desde una carpeta del design system. El código de la app importa desde ahí,
+no directamente desde los paquetes. Esto permite cambios globales y una refactorización sencilla.
 
-**Incorrect (imports directly from package):**
+**Incorrecto (importa directamente desde el paquete):**
 
 ```tsx
 import { View, Text } from 'react-native'
@@ -26,13 +26,13 @@ function Profile() {
 }
 ```
 
-**Correct (imports from design system):**
+**Correcto (importa desde el design system):**
 
 ```tsx
 // components/view.tsx
 import { View as RNView } from 'react-native'
 
-// ideal: pick the props you will actually use to control implementation
+// ideal: elige las props que realmente vas a usar para controlar la implementación
 export function View(
   props: Pick<React.ComponentProps<typeof RNView>, 'style' | 'children'>
 ) {
@@ -65,4 +65,4 @@ function Profile() {
 }
 ```
 
-Start by simply re-exporting. Customize later without changing app code.
+Empieza simplemente re-exportando. Personaliza más adelante sin cambiar el código de la app.

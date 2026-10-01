@@ -1,15 +1,15 @@
 ---
-title: Use contentInsetAdjustmentBehavior for Safe Areas
+title: Usa contentInsetAdjustmentBehavior para las safe areas
 impact: MEDIUM
-impactDescription: native safe area handling, no layout shifts
+impactDescription: manejo nativo de la safe area, sin layout shifts
 tags: safe-area, scrollview, layout
 ---
 
-## Use contentInsetAdjustmentBehavior for Safe Areas
+## Usa contentInsetAdjustmentBehavior para las safe areas
 
-Use `contentInsetAdjustmentBehavior="automatic"` on the root ScrollView instead of wrapping content in SafeAreaView or manual padding. This lets iOS handle safe area insets natively with proper scroll behavior.
+Usa `contentInsetAdjustmentBehavior="automatic"` en el ScrollView raíz en lugar de envolver el contenido en SafeAreaView o usar padding manual. Esto permite que iOS maneje los insets de la safe area de forma nativa con un comportamiento de scroll correcto.
 
-**Incorrect (SafeAreaView wrapper):**
+**Incorrecto (wrapper SafeAreaView):**
 
 ```tsx
 import { SafeAreaView, ScrollView, View, Text } from 'react-native'
@@ -27,7 +27,7 @@ function MyScreen() {
 }
 ```
 
-**Incorrect (manual safe area padding):**
+**Incorrecto (padding manual de safe area):**
 
 ```tsx
 import { ScrollView, View, Text } from 'react-native'
@@ -46,7 +46,7 @@ function MyScreen() {
 }
 ```
 
-**Correct (native content inset adjustment):**
+**Correcto (ajuste nativo del content inset):**
 
 ```tsx
 import { ScrollView, View, Text } from 'react-native'
@@ -62,4 +62,4 @@ function MyScreen() {
 }
 ```
 
-The native approach handles dynamic safe areas (keyboard, toolbars) and allows content to scroll behind the status bar naturally.
+El enfoque nativo maneja las safe areas dinámicas (teclado, toolbars) y permite que el contenido se desplace detrás de la status bar de forma natural.

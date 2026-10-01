@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
-  "organization": "Engineering",
-  "date": "January 2026",
-  "abstract": "Comprehensive performance optimization guide for React Native applications, designed for AI agents and LLMs. Contains 35+ rules across 13 categories, prioritized by impact from critical (core rendering, list performance) to incremental (fonts, imports). Each rule includes detailed explanations, real-world examples comparing incorrect vs. correct implementations, and specific impact metrics to guide automated refactoring and code generation.",
+  "organization": "Ingeniería",
+  "date": "Enero de 2026",
+  "abstract": "Guía completa de optimización del rendimiento para aplicaciones de React Native, diseñada para agentes de IA y LLMs. Contiene más de 35 reglas en 13 categorías, priorizadas por impacto, desde críticas (renderizado fundamental, rendimiento de listas) hasta incrementales (fuentes, imports). Cada regla incluye explicaciones detalladas, ejemplos del mundo real que comparan implementaciones incorrectas vs. correctas y métricas de impacto específicas para guiar la refactorización y la generación de código automatizadas.",
   "references": [
     "https://react.dev",
     "https://reactnative.dev",

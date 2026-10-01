@@ -1,18 +1,18 @@
 ---
-title: Use GestureDetector for Animated Press States
+title: Usa GestureDetector para estados de press animados
 impact: MEDIUM
-impactDescription: UI thread animations, smoother press feedback
+impactDescription: animaciones en el UI thread, feedback de press más fluido
 tags: animation, gestures, press, reanimated
 ---
 
-## Use GestureDetector for Animated Press States
+## Usa GestureDetector para estados de press animados
 
-For animated press states (scale, opacity on press), use `GestureDetector` with
-`Gesture.Tap()` and shared values instead of Pressable's
-`onPressIn`/`onPressOut`. Gesture callbacks run on the UI thread as worklets—no
-JS thread round-trip for press animations.
+Para estados de press animados (scale, opacity al presionar), usa `GestureDetector` con
+`Gesture.Tap()` y shared values en lugar de
+`onPressIn`/`onPressOut` de Pressable. Los callbacks de gestos se ejecutan en el UI thread como worklets; no hay
+ida y vuelta al JS thread para las animaciones de press.
 
-**Incorrect (Pressable with JS thread callbacks):**
+**Incorrecto (Pressable con callbacks en el JS thread):**
 
 ```tsx
 import { Pressable } from 'react-native'
@@ -43,7 +43,7 @@ function AnimatedButton({ onPress }: { onPress: () => void }) {
 }
 ```
 
-**Correct (GestureDetector with UI thread worklets):**
+**Correcto (GestureDetector con worklets en el UI thread):**
 
 ```tsx
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
@@ -56,7 +56,7 @@ import Animated, {
 } from 'react-native-reanimated'
 
 function AnimatedButton({ onPress }: { onPress: () => void }) {
-  // Store the press STATE (0 = not pressed, 1 = pressed)
+  // Almacena el ESTADO del press (0 = no presionado, 1 = presionado)
   const pressed = useSharedValue(0)
 
   const tap = Gesture.Tap()
@@ -70,7 +70,7 @@ function AnimatedButton({ onPress }: { onPress: () => void }) {
       runOnJS(onPress)()
     })
 
-  // Derive visual values from the state
+  // Deriva los valores visuales a partir del estado
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [
       { scale: interpolate(withTiming(pressed.get()), [0, 1], [1, 0.95]) },
@@ -87,9 +87,9 @@ function AnimatedButton({ onPress }: { onPress: () => void }) {
 }
 ```
 
-Store the press **state** (0 or 1), then derive the scale via `interpolate`.
-This keeps the shared value as ground truth. Use `runOnJS` to call JS functions
-from worklets. Use `.set()` and `.get()` for React Compiler compatibility.
+Almacena el **estado** del press (0 o 1) y luego deriva el scale mediante `interpolate`.
+Esto mantiene el shared value como ground truth. Usa `runOnJS` para llamar funciones JS
+desde worklets. Usa `.set()` y `.get()` para la compatibilidad con React Compiler.
 
-Reference:
+Referencia:
 [Gesture Handler Tap Gesture](https://docs.swmansion.com/react-native-gesture-handler/docs/gestures/tap-gesture)

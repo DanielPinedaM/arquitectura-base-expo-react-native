@@ -1,18 +1,18 @@
 ---
-title: State Must Represent Ground Truth
+title: El estado debe representar el ground truth
 impact: HIGH
-impactDescription: cleaner logic, easier debugging, single source of truth
+impactDescription: lógica más limpia, depuración más sencilla, una única fuente de verdad
 tags: state, derived-state, reanimated, hooks
 ---
 
-## State Must Represent Ground Truth
+## El estado debe representar el ground truth
 
-State variables—both React `useState` and Reanimated shared values—should
-represent the actual state of something (e.g., `pressed`, `progress`, `isOpen`),
-not derived visual values (e.g., `scale`, `opacity`, `translateY`). Derive
-visual values from state using computation or interpolation.
+Las variables de estado, tanto `useState` de React como los shared values de Reanimated, deben
+representar el estado real de algo (p. ej., `pressed`, `progress`, `isOpen`),
+no valores visuales derivados (p. ej., `scale`, `opacity`, `translateY`). Deriva
+los valores visuales a partir del estado mediante cómputo o interpolación.
 
-**Incorrect (storing the visual output):**
+**Incorrecto (almacenar la salida visual):**
 
 ```tsx
 const scale = useSharedValue(1)
@@ -30,10 +30,10 @@ const animatedStyle = useAnimatedStyle(() => ({
 }))
 ```
 
-**Correct (storing the state, deriving the visual):**
+**Correcto (almacenar el estado, derivar lo visual):**
 
 ```tsx
-const pressed = useSharedValue(0) // 0 = not pressed, 1 = pressed
+const pressed = useSharedValue(0) // 0 = no presionado, 1 = presionado
 
 const tap = Gesture.Tap()
   .onBegin(() => {
@@ -48,23 +48,23 @@ const animatedStyle = useAnimatedStyle(() => ({
 }))
 ```
 
-**Why this matters:**
+**Por qué es importante:**
 
-State variables should represent real "state", not necessarily a desired end
-result.
+Las variables de estado deben representar el "estado" real, no necesariamente un resultado
+final deseado.
 
-1. **Single source of truth** — The state (`pressed`) describes what's
-   happening; visuals are derived
-2. **Easier to extend** — Adding opacity, rotation, or other effects just
-   requires more interpolations from the same state
-3. **Debugging** — Inspecting `pressed = 1` is clearer than `scale = 0.95`
-4. **Reusable logic** — The same `pressed` value can drive multiple visual
-   properties
+1. **Una única fuente de verdad** — El estado (`pressed`) describe lo que está
+   ocurriendo; lo visual se deriva
+2. **Más fácil de extender** — Agregar opacity, rotación u otros efectos solo
+   requiere más interpolaciones a partir del mismo estado
+3. **Depuración** — Inspeccionar `pressed = 1` es más claro que `scale = 0.95`
+4. **Lógica reutilizable** — El mismo valor `pressed` puede controlar múltiples propiedades
+   visuales
 
-**Same principle for React state:**
+**El mismo principio para el estado de React:**
 
 ```tsx
-// Incorrect: storing derived values
+// Incorrecto: almacenar valores derivados
 const [isExpanded, setIsExpanded] = useState(false)
 const [height, setHeight] = useState(0)
 
@@ -72,9 +72,9 @@ useEffect(() => {
   setHeight(isExpanded ? 200 : 0)
 }, [isExpanded])
 
-// Correct: derive from state
+// Correcto: deriva a partir del estado
 const [isExpanded, setIsExpanded] = useState(false)
 const height = isExpanded ? 200 : 0
 ```
 
-State is the minimal truth. Everything else is derived.
+El estado es la verdad mínima. Todo lo demás se deriva.

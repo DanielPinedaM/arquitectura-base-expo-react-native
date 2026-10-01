@@ -1,18 +1,18 @@
 ---
-title: Use Item Types for Heterogeneous Lists
+title: Usa tipos de elementos para listas heterogéneas
 impact: HIGH
-impactDescription: efficient recycling, less layout thrashing
+impactDescription: reciclaje eficiente, menos layout thrashing
 tags: list, performance, recycling, heterogeneous, LegendList
 ---
 
-## Use Item Types for Heterogeneous Lists
+## Usa tipos de elementos para listas heterogéneas
 
-When a list has different item layouts (messages, images, headers, etc.), use a
-`type` field on each item and provide `getItemType` to the list. This puts items
-into separate recycling pools so a message component never gets recycled into an
-image component.
+Cuando una lista tiene diferentes layouts de elementos (mensajes, imágenes, encabezados, etc.), usa un
+campo `type` en cada elemento y proporciona `getItemType` a la lista. Esto coloca los elementos
+en pools de reciclaje separados, de modo que un componente de mensaje nunca se recicle como un
+componente de imagen.
 
-**Incorrect (single component with conditionals):**
+**Incorrecto (un solo componente con condicionales):**
 
 ```tsx
 type Item = { id: string; text?: string; imageUrl?: string; isHeader?: boolean }
@@ -38,7 +38,7 @@ function Feed({ items }: { items: Item[] }) {
 }
 ```
 
-**Correct (typed items with separate components):**
+**Correcto (elementos tipados con componentes separados):**
 
 ```tsx
 type HeaderItem = { id: string; type: 'header'; title: string }
@@ -68,13 +68,13 @@ function Feed({ items }: { items: FeedItem[] }) {
 }
 ```
 
-**Why this matters:**
+**Por qué es importante:**
 
-- **Recycling efficiency**: Items with the same type share a recycling pool
-- **No layout thrashing**: A header never recycles into an image cell
-- **Type safety**: TypeScript can narrow the item type in each branch
-- **Better size estimation**: Use `getEstimatedItemSize` with `itemType` for
-  accurate estimates per type
+- **Eficiencia del reciclaje**: Los elementos con el mismo tipo comparten un pool de reciclaje
+- **Sin layout thrashing**: Un encabezado nunca se recicla como una celda de imagen
+- **Type safety**: TypeScript puede acotar el tipo del elemento en cada rama
+- **Mejor estimación del tamaño**: Usa `getEstimatedItemSize` con `itemType` para
+  estimaciones precisas por tipo
 
 ```tsx
 <LegendList
@@ -100,5 +100,5 @@ function Feed({ items }: { items: FeedItem[] }) {
 />
 ```
 
-Reference:
+Referencia:
 [LegendList getItemType](https://legendapp.com/open-source/list/api/props/#getitemtype-v2)

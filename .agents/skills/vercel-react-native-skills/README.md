@@ -1,165 +1,165 @@
-# React Native Guidelines
+# Lineamientos de React Native
 
-A structured repository for creating and maintaining React Native Best Practices
-optimized for agents and LLMs.
+Un repositorio estructurado para crear y mantener buenas prácticas de React Native
+optimizadas para agentes y LLMs.
 
-## Structure
+## Estructura
 
-- `rules/` - Individual rule files (one per rule)
-  - `_sections.md` - Section metadata (titles, impacts, descriptions)
-  - `_template.md` - Template for creating new rules
-  - `area-description.md` - Individual rule files
-- `metadata.json` - Document metadata (version, organization, abstract)
-- **`AGENTS.md`** - Compiled output (generated)
+- `rules/` - Archivos de reglas individuales (uno por regla)
+  - `_sections.md` - Metadata de las secciones (títulos, impactos, descripciones)
+  - `_template.md` - Plantilla para crear nuevas reglas
+  - `area-description.md` - Archivos de reglas individuales
+- `metadata.json` - Metadata del documento (versión, organización, resumen)
+- **`AGENTS.md`** - Salida compilada (generada)
 
-## Rules
+## Reglas
 
-### Core Rendering (CRITICAL)
+### Renderizado fundamental (CRITICAL)
 
-- `rendering-text-in-text-component.md` - Wrap strings in Text components
-- `rendering-no-falsy-and.md` - Avoid falsy && operator in JSX
+- `rendering-text-in-text-component.md` - Envuelve los strings en componentes Text
+- `rendering-no-falsy-and.md` - Evita el operador && con valores falsy en JSX
 
-### List Performance (HIGH)
+### Rendimiento de listas (HIGH)
 
-- `list-performance-virtualize.md` - Use virtualized lists (LegendList,
+- `list-performance-virtualize.md` - Usa listas virtualizadas (LegendList,
   FlashList)
-- `list-performance-function-references.md` - Keep stable object references
-- `list-performance-callbacks.md` - Hoist callbacks to list root
-- `list-performance-inline-objects.md` - Avoid inline objects in renderItem
-- `list-performance-item-memo.md` - Pass primitives for memoization
-- `list-performance-item-expensive.md` - Keep list items lightweight
-- `list-performance-images.md` - Use compressed images in lists
-- `list-performance-item-types.md` - Use item types for heterogeneous lists
+- `list-performance-function-references.md` - Mantén referencias de objetos estables
+- `list-performance-callbacks.md` - Haz hoisting de los callbacks a la raíz de la lista
+- `list-performance-inline-objects.md` - Evita objetos inline en renderItem
+- `list-performance-item-memo.md` - Pasa primitivos para la memoization
+- `list-performance-item-expensive.md` - Mantén ligeros los elementos de la lista
+- `list-performance-images.md` - Usa imágenes comprimidas en las listas
+- `list-performance-item-types.md` - Usa tipos de elementos para listas heterogéneas
 
-### Animation (HIGH)
+### Animación (HIGH)
 
-- `animation-gpu-properties.md` - Animate transform/opacity instead of layout
-- `animation-gesture-detector-press.md` - Use GestureDetector for press
-  animations
-- `animation-derived-value.md` - Prefer useDerivedValue over useAnimatedReaction
+- `animation-gpu-properties.md` - Anima transform/opacity en lugar del layout
+- `animation-gesture-detector-press.md` - Usa GestureDetector para las animaciones
+  de press
+- `animation-derived-value.md` - Prefiere useDerivedValue en lugar de useAnimatedReaction
 
-### Scroll Performance (HIGH)
+### Rendimiento del scroll (HIGH)
 
-- `scroll-position-no-state.md` - Never track scroll in useState
+- `scroll-position-no-state.md` - Nunca rastrees el scroll en useState
 
-### Navigation (HIGH)
+### Navegación (HIGH)
 
-- `navigation-native-navigators.md` - Use native stack and native tabs
+- `navigation-native-navigators.md` - Usa native stack y native tabs
 
-### React State (MEDIUM)
+### Estado de React (MEDIUM)
 
-- `react-state-dispatcher.md` - Use functional setState updates
-- `react-state-fallback.md` - State should represent user intent only
-- `react-state-minimize.md` - Minimize state variables, derive values
+- `react-state-dispatcher.md` - Usa actualizaciones funcionales de setState
+- `react-state-fallback.md` - El estado debe representar solo la intención del usuario
+- `react-state-minimize.md` - Minimiza las variables de estado, deriva los valores
 
-### State Architecture (MEDIUM)
+### Arquitectura del estado (MEDIUM)
 
-- `state-ground-truth.md` - State must represent ground truth
+- `state-ground-truth.md` - El estado debe representar el ground truth
 
 ### React Compiler (MEDIUM)
 
-- `react-compiler-destructure-functions.md` - Destructure functions early
-- `react-compiler-reanimated-shared-values.md` - Use .get()/.set() for shared
+- `react-compiler-destructure-functions.md` - Desestructura las funciones al inicio
+- `react-compiler-reanimated-shared-values.md` - Usa .get()/.set() para los shared
   values
 
-### User Interface (MEDIUM)
+### Interfaz de usuario (MEDIUM)
 
-- `ui-expo-image.md` - Use expo-image for optimized images
-- `ui-image-gallery.md` - Use Galeria for lightbox/galleries
-- `ui-menus.md` - Native dropdown and context menus with Zeego
-- `ui-native-modals.md` - Use native Modal with formSheet
-- `ui-pressable.md` - Use Pressable instead of TouchableOpacity
-- `ui-measure-views.md` - Measuring view dimensions
-- `ui-safe-area-scroll.md` - Use contentInsetAdjustmentBehavior
-- `ui-scrollview-content-inset.md` - Use contentInset for dynamic spacing
-- `ui-styling.md` - Modern styling patterns (gap, boxShadow, gradients)
+- `ui-expo-image.md` - Usa expo-image para imágenes optimizadas
+- `ui-image-gallery.md` - Usa Galeria para lightbox/galerías
+- `ui-menus.md` - Dropdowns y context menus nativos con Zeego
+- `ui-native-modals.md` - Usa el Modal nativo con formSheet
+- `ui-pressable.md` - Usa Pressable en lugar de TouchableOpacity
+- `ui-measure-views.md` - Medir las dimensiones de las vistas
+- `ui-safe-area-scroll.md` - Usa contentInsetAdjustmentBehavior
+- `ui-scrollview-content-inset.md` - Usa contentInset para el espaciado dinámico
+- `ui-styling.md` - Patrones modernos de estilos (gap, boxShadow, degradados)
 
 ### Design System (MEDIUM)
 
-- `design-system-compound-components.md` - Use compound components
+- `design-system-compound-components.md` - Usa compound components
 
 ### Monorepo (LOW)
 
-- `monorepo-native-deps-in-app.md` - Install native deps in app directory
-- `monorepo-single-dependency-versions.md` - Single dependency versions
+- `monorepo-native-deps-in-app.md` - Instala las dependencias nativas en el directorio de la app
+- `monorepo-single-dependency-versions.md` - Versiones únicas de las dependencias
 
-### Third-Party Dependencies (LOW)
+### Dependencias de terceros (LOW)
 
-- `imports-design-system-folder.md` - Import from design system folder
+- `imports-design-system-folder.md` - Importa desde la carpeta del design system
 
 ### JavaScript (LOW)
 
-- `js-hoist-intl.md` - Hoist Intl formatter creation
+- `js-hoist-intl.md` - Haz hoisting de la creación de formatters de Intl
 
-### Fonts (LOW)
+### Fuentes (LOW)
 
-- `fonts-config-plugin.md` - Load fonts natively at build time
+- `fonts-config-plugin.md` - Carga las fuentes de forma nativa en tiempo de build
 
-## Creating a New Rule
+## Crear una nueva regla
 
-1. Copy `rules/_template.md` to `rules/area-description.md`
-2. Choose the appropriate area prefix:
-   - `rendering-` for Core Rendering
-   - `list-performance-` for List Performance
-   - `animation-` for Animation
-   - `scroll-` for Scroll Performance
-   - `navigation-` for Navigation
-   - `react-state-` for React State
-   - `state-` for State Architecture
-   - `react-compiler-` for React Compiler
-   - `ui-` for User Interface
-   - `design-system-` for Design System
-   - `monorepo-` for Monorepo
-   - `imports-` for Third-Party Dependencies
-   - `js-` for JavaScript
-   - `fonts-` for Fonts
-3. Fill in the frontmatter and content
-4. Ensure you have clear examples with explanations
+1. Copia `rules/_template.md` a `rules/area-description.md`
+2. Elige el prefijo de área apropiado:
+   - `rendering-` para Renderizado fundamental
+   - `list-performance-` para Rendimiento de listas
+   - `animation-` para Animación
+   - `scroll-` para Rendimiento del scroll
+   - `navigation-` para Navegación
+   - `react-state-` para Estado de React
+   - `state-` para Arquitectura del estado
+   - `react-compiler-` para React Compiler
+   - `ui-` para Interfaz de usuario
+   - `design-system-` para Design System
+   - `monorepo-` para Monorepo
+   - `imports-` para Dependencias de terceros
+   - `js-` para JavaScript
+   - `fonts-` para Fuentes
+3. Completa el frontmatter y el contenido
+4. Asegúrate de tener ejemplos claros con explicaciones
 
-## Rule File Structure
+## Estructura de los archivos de reglas
 
-Each rule file should follow this structure:
+Cada archivo de regla debe seguir esta estructura:
 
 ````markdown
 ---
-title: Rule Title Here
+title: Título de la regla aquí
 impact: MEDIUM
-impactDescription: Optional description
+impactDescription: Descripción opcional
 tags: tag1, tag2, tag3
 ---
 
-## Rule Title Here
+## Título de la regla aquí
 
-Brief explanation of the rule and why it matters.
+Breve explicación de la regla y de por qué es importante.
 
-**Incorrect (description of what's wrong):**
+**Incorrecto (descripción de lo que está mal):**
 
 ```tsx
-// Bad code example
+// Ejemplo de código malo
 ```
 ````
 
-**Correct (description of what's right):**
+**Correcto (descripción de lo que está bien):**
 
 ```tsx
-// Good code example
+// Ejemplo de código bueno
 ```
 
-Reference: [Link](https://example.com)
+Referencia: [Enlace](https://example.com)
 
 ```
 
-## File Naming Convention
+## Convención de nombres de archivos
 
-- Files starting with `_` are special (excluded from build)
-- Rule files: `area-description.md` (e.g., `animation-gpu-properties.md`)
-- Section is automatically inferred from filename prefix
-- Rules are sorted alphabetically by title within each section
+- Los archivos que empiezan con `_` son especiales (excluidos del build)
+- Archivos de reglas: `area-description.md` (p. ej., `animation-gpu-properties.md`)
+- La sección se infiere automáticamente a partir del prefijo del nombre de archivo
+- Las reglas se ordenan alfabéticamente por título dentro de cada sección
 
-## Impact Levels
+## Niveles de impacto
 
-- `CRITICAL` - Highest priority, causes crashes or broken UI
-- `HIGH` - Significant performance improvements
-- `MEDIUM` - Moderate performance improvements
-- `LOW` - Incremental improvements
+- `CRITICAL` - Máxima prioridad, provoca crashes o UI rota
+- `HIGH` - Mejoras de rendimiento significativas
+- `MEDIUM` - Mejoras de rendimiento moderadas
+- `LOW` - Mejoras incrementales
 ```

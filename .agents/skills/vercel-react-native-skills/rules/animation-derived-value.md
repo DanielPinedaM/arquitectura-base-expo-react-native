@@ -1,18 +1,18 @@
 ---
-title: Prefer useDerivedValue Over useAnimatedReaction
+title: Prefiere useDerivedValue en lugar de useAnimatedReaction
 impact: MEDIUM
-impactDescription: cleaner code, automatic dependency tracking
+impactDescription: código más limpio, rastreo automático de dependencias
 tags: animation, reanimated, derived-value
 ---
 
-## Prefer useDerivedValue Over useAnimatedReaction
+## Prefiere useDerivedValue en lugar de useAnimatedReaction
 
-When deriving a shared value from another, use `useDerivedValue` instead of
-`useAnimatedReaction`. Derived values are declarative, automatically track
-dependencies, and return a value you can use directly. Animated reactions are
-for side effects, not derivations.
+Al derivar un shared value a partir de otro, usa `useDerivedValue` en lugar de
+`useAnimatedReaction`. Los derived values son declarativos, rastrean automáticamente
+las dependencias y devuelven un valor que puedes usar directamente. Las animated reactions son
+para efectos secundarios, no para derivaciones.
 
-**Incorrect (useAnimatedReaction for derivation):**
+**Incorrecto (useAnimatedReaction para derivación):**
 
 ```tsx
 import { useSharedValue, useAnimatedReaction } from 'react-native-reanimated'
@@ -32,7 +32,7 @@ function MyComponent() {
 }
 ```
 
-**Correct (useDerivedValue):**
+**Correcto (useDerivedValue):**
 
 ```tsx
 import { useSharedValue, useDerivedValue } from 'react-native-reanimated'
@@ -46,8 +46,8 @@ function MyComponent() {
 }
 ```
 
-Use `useAnimatedReaction` only for side effects that don't produce a value
-(e.g., triggering haptics, logging, calling `runOnJS`).
+Usa `useAnimatedReaction` solo para efectos secundarios que no producen un valor
+(p. ej., disparar haptics, logging, llamar a `runOnJS`).
 
-Reference:
+Referencia:
 [Reanimated useDerivedValue](https://docs.swmansion.com/react-native-reanimated/docs/core/useDerivedValue)

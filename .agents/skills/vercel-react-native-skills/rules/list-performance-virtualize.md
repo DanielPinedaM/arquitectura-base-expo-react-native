@@ -1,18 +1,18 @@
 ---
-title: Use a List Virtualizer for Any List
+title: Usa un virtualizador de listas para cualquier lista
 impact: HIGH
-impactDescription: reduced memory, faster mounts
+impactDescription: menos memoria, montajes más rápidos
 tags: lists, performance, virtualization, scrollview
 ---
 
-## Use a List Virtualizer for Any List
+## Usa un virtualizador de listas para cualquier lista
 
-Use a list virtualizer like LegendList or FlashList instead of ScrollView with
-mapped children—even for short lists. Virtualizers only render visible items,
-reducing memory usage and mount time. ScrollView renders all children upfront,
-which gets expensive quickly.
+Usa un virtualizador de listas como LegendList o FlashList en lugar de ScrollView con
+children mapeados, incluso para listas cortas. Los virtualizadores solo renderizan los elementos visibles,
+lo que reduce el uso de memoria y el tiempo de montaje. ScrollView renderiza todos los children de entrada,
+lo que se vuelve costoso rápidamente.
 
-**Incorrect (ScrollView renders all items at once):**
+**Incorrecto (ScrollView renderiza todos los elementos a la vez):**
 
 ```tsx
 function Feed({ items }: { items: Item[] }) {
@@ -24,10 +24,10 @@ function Feed({ items }: { items: Item[] }) {
     </ScrollView>
   )
 }
-// 50 items = 50 components mounted, even if only 10 visible
+// 50 elementos = 50 componentes montados, aunque solo 10 sean visibles
 ```
 
-**Correct (virtualizer renders only visible items):**
+**Correcto (el virtualizador renderiza solo los elementos visibles):**
 
 ```tsx
 import { LegendList } from '@legendapp/list'
@@ -36,17 +36,17 @@ function Feed({ items }: { items: Item[] }) {
   return (
     <LegendList
       data={items}
-      // if you aren't using React Compiler, wrap these with useCallback
+      // si no estás usando React Compiler, envuelve estos con useCallback
       renderItem={({ item }) => <ItemCard item={item} />}
       keyExtractor={(item) => item.id}
       estimatedItemSize={80}
     />
   )
 }
-// Only ~10-15 visible items mounted at a time
+// Solo ~10-15 elementos visibles montados a la vez
 ```
 
-**Alternative (FlashList):**
+**Alternativa (FlashList):**
 
 ```tsx
 import { FlashList } from '@shopify/flash-list'
@@ -55,7 +55,7 @@ function Feed({ items }: { items: Item[] }) {
   return (
     <FlashList
       data={items}
-      // if you aren't using React Compiler, wrap these with useCallback
+      // si no estás usando React Compiler, envuelve estos con useCallback
       renderItem={({ item }) => <ItemCard item={item} />}
       keyExtractor={(item) => item.id}
     />
@@ -63,5 +63,5 @@ function Feed({ items }: { items: Item[] }) {
 }
 ```
 
-Benefits apply to any screen with scrollable content—profiles, settings, feeds,
-search results. Default to virtualization.
+Los beneficios aplican a cualquier pantalla con contenido desplazable: perfiles, configuración, feeds,
+resultados de búsqueda. Usa la virtualización por defecto.

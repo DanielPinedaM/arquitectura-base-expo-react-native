@@ -1,17 +1,17 @@
 ---
-title: Hoist Intl Formatter Creation
+title: Haz hoisting de la creación de formatters de Intl
 impact: LOW-MEDIUM
-impactDescription: avoids expensive object recreation
+impactDescription: evita la recreación costosa de objetos
 tags: javascript, intl, optimization, memoization
 ---
 
-## Hoist Intl Formatter Creation
+## Haz hoisting de la creación de formatters de Intl
 
-Don't create `Intl.DateTimeFormat`, `Intl.NumberFormat`, or
-`Intl.RelativeTimeFormat` inside render or loops. These are expensive to
-instantiate. Hoist to module scope when the locale/options are static.
+No crees `Intl.DateTimeFormat`, `Intl.NumberFormat` ni
+`Intl.RelativeTimeFormat` dentro del render o de bucles. Son costosos de
+instanciar. Haz hoisting al scope del módulo cuando el locale/las opciones sean estáticos.
 
-**Incorrect (new formatter every render):**
+**Incorrecto (nuevo formatter en cada render):**
 
 ```tsx
 function Price({ amount }: { amount: number }) {
@@ -23,7 +23,7 @@ function Price({ amount }: { amount: number }) {
 }
 ```
 
-**Correct (hoisted to module scope):**
+**Correcto (con hoisting al scope del módulo):**
 
 ```tsx
 const currencyFormatter = new Intl.NumberFormat('en-US', {
@@ -36,7 +36,7 @@ function Price({ amount }: { amount: number }) {
 }
 ```
 
-**For dynamic locales, memoize:**
+**Para locales dinámicos, memoiza:**
 
 ```tsx
 const dateFormatter = useMemo(
@@ -45,10 +45,10 @@ const dateFormatter = useMemo(
 )
 ```
 
-**Common formatters to hoist:**
+**Formatters comunes a los que hacer hoisting:**
 
 ```tsx
-// Module-level formatters
+// Formatters a nivel de módulo
 const dateFormatter = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' })
 const timeFormatter = new Intl.DateTimeFormat('en-US', { timeStyle: 'short' })
 const percentFormatter = new Intl.NumberFormat('en-US', { style: 'percent' })
@@ -57,5 +57,5 @@ const relativeFormatter = new Intl.RelativeTimeFormat('en-US', {
 })
 ```
 
-Creating `Intl` objects is significantly more expensive than `RegExp` or plain
-objects—each instantiation parses locale data and builds internal lookup tables.
+Crear objetos `Intl` es significativamente más costoso que crear `RegExp` u objetos
+simples: cada instanciación analiza los datos del locale y construye tablas de búsqueda internas.

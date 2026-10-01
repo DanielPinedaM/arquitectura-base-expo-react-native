@@ -1,20 +1,20 @@
 ---
-title: Use Single Dependency Versions Across Monorepo
+title: Usa una única versión de cada dependencia en todo el monorepo
 impact: MEDIUM
-impactDescription: avoids duplicate bundles, version conflicts
+impactDescription: evita bundles duplicados y conflictos de versiones
 tags: monorepo, dependencies, installation
 ---
 
-## Use Single Dependency Versions Across Monorepo
+## Usa una única versión de cada dependencia en todo el monorepo
 
-Use a single version of each dependency across all packages in your monorepo.
-Prefer exact versions over ranges. Multiple versions cause duplicate code in
-bundles, runtime conflicts, and inconsistent behavior across packages.
+Usa una única versión de cada dependencia en todos los paquetes de tu monorepo.
+Prefiere versiones exactas en lugar de rangos. Múltiples versiones provocan código duplicado en
+los bundles, conflictos en runtime y un comportamiento inconsistente entre paquetes.
 
-Use a tool like syncpack to enforce this. As a last resort, use yarn resolutions
-or npm overrides.
+Usa una herramienta como syncpack para hacer cumplir esto. Como último recurso, usa resolutions de yarn
+u overrides de npm.
 
-**Incorrect (version ranges, multiple versions):**
+**Incorrecto (rangos de versiones, múltiples versiones):**
 
 ```json
 // packages/app/package.json
@@ -32,10 +32,10 @@ or npm overrides.
 }
 ```
 
-**Correct (exact versions, single source of truth):**
+**Correcto (versiones exactas, una única fuente de verdad):**
 
 ```json
-// package.json (root)
+// package.json (raíz)
 {
   "pnpm": {
     "overrides": {
@@ -59,5 +59,5 @@ or npm overrides.
 }
 ```
 
-Use your package manager's override/resolution feature to enforce versions at
-the root. When adding dependencies, specify exact versions without `^` or `~`.
+Usa la funcionalidad de override/resolution de tu gestor de paquetes para hacer cumplir las versiones en
+la raíz. Al agregar dependencias, especifica versiones exactas sin `^` ni `~`.

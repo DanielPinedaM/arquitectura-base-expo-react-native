@@ -1,17 +1,17 @@
 ---
-title: Avoid Inline Objects in renderItem
+title: Evita objetos inline en renderItem
 impact: HIGH
-impactDescription: prevents unnecessary re-renders of memoized list items
+impactDescription: evita re-renders innecesarios de los elementos de lista memoizados
 tags: lists, performance, flatlist, virtualization, memo
 ---
 
-## Avoid Inline Objects in renderItem
+## Evita objetos inline en renderItem
 
-Don't create new objects inside `renderItem` to pass as props. Inline objects
-create new references on every render, breaking memoization. Pass primitive
-values directly from `item` instead.
+No crees nuevos objetos dentro de `renderItem` para pasarlos como props. Los objetos inline
+crean nuevas referencias en cada render, lo que rompe la memoization. En su lugar, pasa valores
+primitivos directamente desde `item`.
 
-**Incorrect (inline object breaks memoization):**
+**Incorrecto (un objeto inline rompe la memoization):**
 
 ```tsx
 function UserList({ users }: { users: User[] }) {
@@ -20,7 +20,7 @@ function UserList({ users }: { users: User[] }) {
       data={users}
       renderItem={({ item }) => (
         <UserRow
-          // Bad: new object on every render
+          // Mal: nuevo objeto en cada render
           user={{ id: item.id, name: item.name, avatar: item.avatar }}
         />
       )}
@@ -29,19 +29,19 @@ function UserList({ users }: { users: User[] }) {
 }
 ```
 
-**Incorrect (inline style object):**
+**Incorrecto (objeto de estilo inline):**
 
 ```tsx
 renderItem={({ item }) => (
   <UserRow
     name={item.name}
-    // Bad: new style object on every render
+    // Mal: nuevo objeto de estilo en cada render
     style={{ backgroundColor: item.isActive ? 'green' : 'gray' }}
   />
 )}
 ```
 
-**Correct (pass item directly or primitives):**
+**Correcto (pasa el item directamente o primitivos):**
 
 ```tsx
 function UserList({ users }: { users: User[] }) {
@@ -49,7 +49,7 @@ function UserList({ users }: { users: User[] }) {
     <LegendList
       data={users}
       renderItem={({ item }) => (
-        // Good: pass the item directly
+        // Bien: pasa el item directamente
         <UserRow user={item} />
       )}
     />
@@ -57,7 +57,7 @@ function UserList({ users }: { users: User[] }) {
 }
 ```
 
-**Correct (pass primitives, derive inside child):**
+**Correcto (pasa primitivos, deriva dentro del hijo):**
 
 ```tsx
 renderItem={({ item }) => (
@@ -69,13 +69,13 @@ renderItem={({ item }) => (
 )}
 
 const UserRow = memo(function UserRow({ id, name, isActive }: Props) {
-  // Good: derive style inside memoized component
+  // Bien: deriva el estilo dentro del componente memoizado
   const backgroundColor = isActive ? 'green' : 'gray'
   return <View style={[styles.row, { backgroundColor }]}>{/* ... */}</View>
 })
 ```
 
-**Correct (hoist static styles in module scope):**
+**Correcto (haz hoisting de los estilos estáticos al scope del módulo):**
 
 ```tsx
 const activeStyle = { backgroundColor: 'green' }
@@ -84,14 +84,14 @@ const inactiveStyle = { backgroundColor: 'gray' }
 renderItem={({ item }) => (
   <UserRow
     name={item.name}
-    // Good: stable references
+    // Bien: referencias estables
     style={item.isActive ? activeStyle : inactiveStyle}
   />
 )}
 ```
 
-Passing primitives or stable references allows `memo()` to skip re-renders when
-the actual values haven't changed.
+Pasar primitivos o referencias estables permite que `memo()` omita re-renders cuando
+los valores reales no han cambiado.
 
-**Note:** If you have the React Compiler enabled, it handles memoization
-automatically and these manual optimizations become less critical.
+**Nota:** Si tienes React Compiler habilitado, este maneja la memoization
+automáticamente y estas optimizaciones manuales se vuelven menos críticas.

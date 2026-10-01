@@ -1,32 +1,32 @@
 ---
-title: Use fallback state instead of initialState
+title: Usa un estado de fallback en lugar de initialState
 impact: MEDIUM
-impactDescription: reactive fallbacks without syncing
+impactDescription: fallbacks reactivos sin sincronización
 tags: state, hooks, derived-state, props, initialState
 ---
 
-## Use fallback state instead of initialState
+## Usa un estado de fallback en lugar de initialState
 
-Use `undefined` as initial state and nullish coalescing (`??`) to fall back to
-parent or server values. State represents user intent only—`undefined` means
-"user hasn't chosen yet." This enables reactive fallbacks that update when the
-source changes, not just on initial render.
+Usa `undefined` como estado inicial y nullish coalescing (`??`) para recurrir a los
+valores del padre o del servidor. El estado representa solo la intención del usuario: `undefined` significa
+"el usuario aún no ha elegido". Esto permite fallbacks reactivos que se actualizan cuando la
+fuente cambia, no solo en el render inicial.
 
-**Incorrect (syncs state, loses reactivity):**
+**Incorrecto (sincroniza el estado, pierde la reactividad):**
 
 ```tsx
 type Props = { fallbackEnabled: boolean }
 
 function Toggle({ fallbackEnabled }: Props) {
   const [enabled, setEnabled] = useState(defaultEnabled)
-  // If fallbackEnabled changes, state is stale
-  // State mixes user intent with default value
+  // Si fallbackEnabled cambia, el estado queda desactualizado
+  // El estado mezcla la intención del usuario con el valor por defecto
 
   return <Switch value={enabled} onValueChange={setEnabled} />
 }
 ```
 
-**Correct (state is user intent, reactive fallback):**
+**Correcto (el estado es la intención del usuario, fallback reactivo):**
 
 ```tsx
 type Props = { fallbackEnabled: boolean }
@@ -34,22 +34,22 @@ type Props = { fallbackEnabled: boolean }
 function Toggle({ fallbackEnabled }: Props) {
   const [_enabled, setEnabled] = useState<boolean | undefined>(undefined)
   const enabled = _enabled ?? defaultEnabled
-  // undefined = user hasn't touched it, falls back to prop
-  // If defaultEnabled changes, component reflects it
-  // Once user interacts, their choice persists
+  // undefined = el usuario no lo ha tocado, recurre a la prop
+  // Si defaultEnabled cambia, el componente lo refleja
+  // Una vez que el usuario interactúa, su elección persiste
 
   return <Switch value={enabled} onValueChange={setEnabled} />
 }
 ```
 
-**With server data:**
+**Con datos del servidor:**
 
 ```tsx
 function ProfileForm({ data }: { data: User }) {
   const [_theme, setTheme] = useState<string | undefined>(undefined)
   const theme = _theme ?? data.theme
-  // Shows server value until user overrides
-  // Server refetch updates the fallback automatically
+  // Muestra el valor del servidor hasta que el usuario lo sobrescribe
+  // Un refetch del servidor actualiza el fallback automáticamente
 
   return <ThemePicker value={theme} onChange={setTheme} />
 }

@@ -1,15 +1,15 @@
 ---
-title: Use expo-image for Optimized Images
+title: Usa expo-image para imágenes optimizadas
 impact: HIGH
-impactDescription: memory efficiency, caching, blurhash placeholders, progressive loading
+impactDescription: eficiencia de memoria, caché, placeholders con blurhash, carga progresiva
 tags: images, performance, expo-image, ui
 ---
 
-## Use expo-image for Optimized Images
+## Usa expo-image para imágenes optimizadas
 
-Use `expo-image` instead of React Native's `Image`. It provides memory-efficient caching, blurhash placeholders, progressive loading, and better performance for lists.
+Usa `expo-image` en lugar del `Image` de React Native. Proporciona una caché eficiente en memoria, placeholders con blurhash, carga progresiva y un mejor rendimiento para las listas.
 
-**Incorrect (React Native Image):**
+**Incorrecto (Image de React Native):**
 
 ```tsx
 import { Image } from 'react-native'
@@ -19,7 +19,7 @@ function Avatar({ url }: { url: string }) {
 }
 ```
 
-**Correct (expo-image):**
+**Correcto (expo-image):**
 
 ```tsx
 import { Image } from 'expo-image'
@@ -29,7 +29,7 @@ function Avatar({ url }: { url: string }) {
 }
 ```
 
-**With blurhash placeholder:**
+**Con placeholder de blurhash:**
 
 ```tsx
 <Image
@@ -41,7 +41,7 @@ function Avatar({ url }: { url: string }) {
 />
 ```
 
-**With priority and caching:**
+**Con prioridad y caché:**
 
 ```tsx
 <Image
@@ -52,15 +52,15 @@ function Avatar({ url }: { url: string }) {
 />
 ```
 
-**Key props:**
+**Props clave:**
 
-- `placeholder` — Blurhash or thumbnail while loading
+- `placeholder` — Blurhash o thumbnail mientras carga
 - `contentFit` — `cover`, `contain`, `fill`, `scale-down`
-- `transition` — Fade-in duration (ms)
+- `transition` — Duración del fade-in (ms)
 - `priority` — `low`, `normal`, `high`
 - `cachePolicy` — `memory`, `disk`, `memory-disk`, `none`
-- `recyclingKey` — Unique key for list recycling
+- `recyclingKey` — Key única para el reciclaje en listas
 
-For cross-platform (web + native), use `SolitoImage` from `solito/image` which uses `expo-image` under the hood.
+Para multiplataforma (web + nativo), usa `SolitoImage` de `solito/image`, que usa `expo-image` internamente.
 
-Reference: [expo-image](https://docs.expo.dev/versions/latest/sdk/image/)
+Referencia: [expo-image](https://docs.expo.dev/versions/latest/sdk/image/)

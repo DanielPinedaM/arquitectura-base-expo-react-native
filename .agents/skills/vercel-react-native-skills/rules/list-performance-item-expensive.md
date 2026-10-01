@@ -1,27 +1,27 @@
 ---
-title: Keep List Items Lightweight
+title: Mantén ligeros los elementos de la lista
 impact: HIGH
-impactDescription: reduces render time for visible items during scroll
+impactDescription: reduce el tiempo de render de los elementos visibles durante el scroll
 tags: lists, performance, virtualization, hooks
 ---
 
-## Keep List Items Lightweight
+## Mantén ligeros los elementos de la lista
 
-List items should be as inexpensive as possible to render. Minimize hooks, avoid
-queries, and limit React Context access. Virtualized lists render many items
-during scroll—expensive items cause jank.
+Los elementos de la lista deben ser lo menos costosos posible de renderizar. Minimiza los hooks, evita
+las queries y limita el acceso a React Context. Las listas virtualizadas renderizan muchos elementos
+durante el scroll: los elementos costosos provocan jank.
 
-**Incorrect (heavy list item):**
+**Incorrecto (elemento de lista pesado):**
 
 ```tsx
 function ProductRow({ id }: { id: string }) {
-  // Bad: query inside list item
+  // Mal: query dentro del elemento de la lista
   const { data: product } = useQuery(['product', id], () => fetchProduct(id))
-  // Bad: multiple context accesses
+  // Mal: múltiples accesos a context
   const theme = useContext(ThemeContext)
   const user = useContext(UserContext)
   const cart = useContext(CartContext)
-  // Bad: expensive computation
+  // Mal: cómputo costoso
   const recommendations = useMemo(
     () => computeRecommendations(product),
     [product]
@@ -31,11 +31,11 @@ function ProductRow({ id }: { id: string }) {
 }
 ```
 
-**Correct (lightweight list item):**
+**Correcto (elemento de lista ligero):**
 
 ```tsx
 function ProductRow({ name, price, imageUrl }: Props) {
-  // Good: receives only primitives, minimal hooks
+  // Bien: recibe solo primitivos, hooks mínimos
   return (
     <View>
       <Image source={{ uri: imageUrl }} />
@@ -46,10 +46,10 @@ function ProductRow({ name, price, imageUrl }: Props) {
 }
 ```
 
-**Move data fetching to parent:**
+**Mueve la obtención de datos al padre:**
 
 ```tsx
-// Parent fetches all data once
+// El padre obtiene todos los datos una sola vez
 function ProductList() {
   const { data: products } = useQuery(['products'], fetchProducts)
 
@@ -64,31 +64,31 @@ function ProductList() {
 }
 ```
 
-**For shared values, use Zustand selectors instead of Context:**
+**Para valores compartidos, usa selectores de Zustand en lugar de Context:**
 
 ```tsx
-// Incorrect: Context causes re-render when any cart value changes
+// Incorrecto: Context provoca re-render cuando cambia cualquier valor del carrito
 function ProductRow({ id, name }: Props) {
   const { items } = useContext(CartContext)
   const inCart = items.includes(id)
   // ...
 }
 
-// Correct: Zustand selector only re-renders when this specific value changes
+// Correcto: el selector de Zustand solo hace re-render cuando cambia este valor específico
 function ProductRow({ id, name }: Props) {
-  // use Set.has (created once at the root) instead of Array.includes()
+  // usa Set.has (creado una sola vez en la raíz) en lugar de Array.includes()
   const inCart = useCartStore((s) => s.items.has(id))
   // ...
 }
 ```
 
-**Guidelines for list items:**
+**Lineamientos para los elementos de la lista:**
 
-- No queries or data fetching
-- No expensive computations (move to parent or memoize at parent level)
-- Prefer Zustand selectors over React Context
-- Minimize useState/useEffect hooks
-- Pass pre-computed values as props
+- Sin queries ni obtención de datos
+- Sin cómputos costosos (muévelos al padre o memoízalos a nivel del padre)
+- Prefiere selectores de Zustand en lugar de React Context
+- Minimiza los hooks useState/useEffect
+- Pasa valores precalculados como props
 
-The goal: list items should be simple rendering functions that take props and
-return JSX.
+El objetivo: los elementos de la lista deben ser funciones de renderizado simples que reciban props y
+devuelvan JSX.

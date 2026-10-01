@@ -1,18 +1,18 @@
 ---
-title: Use contentInset for Dynamic ScrollView Spacing
+title: Usa contentInset para el espaciado dinámico del ScrollView
 impact: LOW
-impactDescription: smoother updates, no layout recalculation
+impactDescription: actualizaciones más fluidas, sin recálculo de layout
 tags: scrollview, layout, contentInset, performance
 ---
 
-## Use contentInset for Dynamic ScrollView Spacing
+## Usa contentInset para el espaciado dinámico del ScrollView
 
-When adding space to the top or bottom of a ScrollView that may change
-(keyboard, toolbars, dynamic content), use `contentInset` instead of padding.
-Changing `contentInset` doesn't trigger layout recalculation—it adjusts the
-scroll area without re-rendering content.
+Al agregar espacio en la parte superior o inferior de un ScrollView que puede cambiar
+(teclado, toolbars, contenido dinámico), usa `contentInset` en lugar de padding.
+Cambiar `contentInset` no dispara el recálculo del layout: ajusta el
+área de scroll sin volver a renderizar el contenido.
 
-**Incorrect (padding causes layout recalculation):**
+**Incorrecto (el padding provoca recálculo de layout):**
 
 ```tsx
 function Feed({ bottomOffset }: { bottomOffset: number }) {
@@ -22,10 +22,10 @@ function Feed({ bottomOffset }: { bottomOffset: number }) {
     </ScrollView>
   )
 }
-// Changing bottomOffset triggers full layout recalculation
+// Cambiar bottomOffset dispara un recálculo completo del layout
 ```
 
-**Correct (contentInset for dynamic spacing):**
+**Correcto (contentInset para el espaciado dinámico):**
 
 ```tsx
 function Feed({ bottomOffset }: { bottomOffset: number }) {
@@ -38,8 +38,8 @@ function Feed({ bottomOffset }: { bottomOffset: number }) {
     </ScrollView>
   )
 }
-// Changing bottomOffset only adjusts scroll bounds
+// Cambiar bottomOffset solo ajusta los límites del scroll
 ```
 
-Use `scrollIndicatorInsets` alongside `contentInset` to keep the scroll
-indicator aligned. For static spacing that never changes, padding is fine.
+Usa `scrollIndicatorInsets` junto con `contentInset` para mantener alineado el indicador de
+scroll. Para un espaciado estático que nunca cambia, el padding está bien.

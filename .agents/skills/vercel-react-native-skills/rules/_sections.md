@@ -1,86 +1,86 @@
-# Sections
+# Secciones
 
-This file defines all sections, their ordering, impact levels, and descriptions.
-The section ID (in parentheses) is the filename prefix used to group rules.
+Este archivo define todas las secciones, su orden, niveles de impacto y descripciones.
+El ID de la sección (entre paréntesis) es el prefijo del nombre de archivo que se usa para agrupar las reglas.
 
 ---
 
-## 1. Core Rendering (rendering)
+## 1. Renderizado fundamental (rendering)
 
-**Impact:** CRITICAL  
-**Description:** Fundamental React Native rendering rules. Violations cause
-runtime crashes or broken UI.
+**Impacto:** CRITICAL  
+**Descripción:** Reglas fundamentales de renderizado de React Native. Incumplirlas provoca
+crashes en runtime o UI rota.
 
-## 2. List Performance (list-performance)
+## 2. Rendimiento de listas (list-performance)
 
-**Impact:** HIGH  
-**Description:** Optimizing virtualized lists (FlatList, LegendList, FlashList)
-for smooth scrolling and fast updates.
+**Impacto:** HIGH  
+**Descripción:** Optimización de listas virtualizadas (FlatList, LegendList, FlashList)
+para un scroll fluido y actualizaciones rápidas.
 
-## 3. Animation (animation)
+## 3. Animación (animation)
 
-**Impact:** HIGH  
-**Description:** GPU-accelerated animations, Reanimated patterns, and avoiding
-render thrashing during gestures.
+**Impacto:** HIGH  
+**Descripción:** Animaciones aceleradas por GPU, patrones de Reanimated y cómo evitar el
+render thrashing durante los gestos.
 
-## 4. Scroll Performance (scroll)
+## 4. Rendimiento del scroll (scroll)
 
-**Impact:** HIGH  
-**Description:** Tracking scroll position without causing render thrashing.
+**Impacto:** HIGH  
+**Descripción:** Rastrear la posición del scroll sin provocar render thrashing.
 
-## 5. Navigation (navigation)
+## 5. Navegación (navigation)
 
-**Impact:** HIGH  
-**Description:** Using native navigators for stack and tab navigation instead of
-JS-based alternatives.
+**Impacto:** HIGH  
+**Descripción:** Uso de navigators nativos para la navegación con stack y tabs en lugar de
+alternativas basadas en JS.
 
-## 6. React State (react-state)
+## 6. Estado de React (react-state)
 
-**Impact:** MEDIUM  
-**Description:** Patterns for managing React state to avoid stale closures and
-unnecessary re-renders.
+**Impacto:** MEDIUM  
+**Descripción:** Patrones para gestionar el estado de React y evitar stale closures y
+re-renders innecesarios.
 
-## 7. State Architecture (state)
+## 7. Arquitectura del estado (state)
 
-**Impact:** MEDIUM  
-**Description:** Ground truth principles for state variables and derived values.
+**Impacto:** MEDIUM  
+**Descripción:** Principios de ground truth para las variables de estado y los valores derivados.
 
 ## 8. React Compiler (react-compiler)
 
-**Impact:** MEDIUM  
-**Description:** Compatibility patterns for React Compiler with React Native and
+**Impacto:** MEDIUM  
+**Descripción:** Patrones de compatibilidad de React Compiler con React Native y
 Reanimated.
 
-## 9. User Interface (ui)
+## 9. Interfaz de usuario (ui)
 
-**Impact:** MEDIUM  
-**Description:** Native UI patterns for images, menus, modals, styling, and
-platform-consistent interfaces.
+**Impacto:** MEDIUM  
+**Descripción:** Patrones de UI nativos para imágenes, menús, modales, estilos e
+interfaces consistentes con la plataforma.
 
 ## 10. Design System (design-system)
 
-**Impact:** MEDIUM  
-**Description:** Architecture patterns for building maintainable component
-libraries.
+**Impacto:** MEDIUM  
+**Descripción:** Patrones de arquitectura para construir librerías de componentes
+mantenibles.
 
 ## 11. Monorepo (monorepo)
 
-**Impact:** LOW  
-**Description:** Dependency management and native module configuration in
+**Impacto:** LOW  
+**Descripción:** Gestión de dependencias y configuración de módulos nativos en
 monorepos.
 
-## 12. Third-Party Dependencies (imports)
+## 12. Dependencias de terceros (imports)
 
-**Impact:** LOW  
-**Description:** Wrapping and re-exporting third-party dependencies for
-maintainability.
+**Impacto:** LOW  
+**Descripción:** Envolver y re-exportar las dependencias de terceros para la
+mantenibilidad.
 
 ## 13. JavaScript (js)
 
-**Impact:** LOW  
-**Description:** Micro-optimizations like hoisting expensive object creation.
+**Impacto:** LOW  
+**Descripción:** Micro-optimizaciones como hacer hoisting de la creación de objetos costosos.
 
-## 14. Fonts (fonts)
+## 14. Fuentes (fonts)
 
-**Impact:** LOW  
-**Description:** Native font loading for improved performance.
+**Impacto:** LOW  
+**Descripción:** Carga nativa de fuentes para un mejor rendimiento.

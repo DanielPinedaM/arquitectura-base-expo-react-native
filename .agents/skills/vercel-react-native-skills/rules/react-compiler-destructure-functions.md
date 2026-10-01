@@ -1,19 +1,19 @@
 ---
-title: Destructure Functions Early in Render (React Compiler)
+title: Desestructura las funciones al inicio del render (React Compiler)
 impact: HIGH
-impactDescription: stable references, fewer re-renders
+impactDescription: referencias estables, menos re-renders
 tags: rerender, hooks, performance, react-compiler
 ---
 
-## Destructure Functions Early in Render
+## Desestructura las funciones al inicio del render
 
-This rule is only applicable if you are using the React Compiler.
+Esta regla solo aplica si estás usando React Compiler.
 
-Destructure functions from hooks at the top of render scope. Never dot into
-objects to call functions. Destructured functions are stable references; dotting
-creates new references and breaks memoization.
+Desestructura las funciones de los hooks al inicio del scope del render. Nunca accedas con punto a
+objetos para llamar funciones. Las funciones desestructuradas son referencias estables; acceder con punto
+crea nuevas referencias y rompe la memoization.
 
-**Incorrect (dotting into object):**
+**Incorrecto (acceder con punto al objeto):**
 
 ```tsx
 import { useRouter } from 'expo-router'
@@ -21,17 +21,17 @@ import { useRouter } from 'expo-router'
 function SaveButton(props) {
   const router = useRouter()
 
-  // bad: react-compiler will key the cache on "props" and "router", which are objects that change each render
+  // mal: react-compiler usará como clave de la caché "props" y "router", que son objetos que cambian en cada render
   const handlePress = () => {
     props.onSave()
-    router.push('/success') // unstable reference
+    router.push('/success') // referencia inestable
   }
 
   return <Button onPress={handlePress}>Save</Button>
 }
 ```
 
-**Correct (destructure early):**
+**Correcto (desestructura al inicio):**
 
 ```tsx
 import { useRouter } from 'expo-router'
@@ -39,10 +39,10 @@ import { useRouter } from 'expo-router'
 function SaveButton({ onSave }) {
   const { push } = useRouter()
 
-  // good: react-compiler will key on push and onSave
+  // bien: react-compiler usará como clave push y onSave
   const handlePress = () => {
     onSave()
-    push('/success') // stable reference
+    push('/success') // referencia estable
   }
 
   return <Button onPress={handlePress}>Save</Button>

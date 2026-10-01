@@ -1,32 +1,32 @@
 ---
-title: useState Dispatch updaters for State That Depends on Current Value
+title: Dispatch updaters de useState para el estado que depende del valor actual
 impact: MEDIUM
-impactDescription: avoids stale closures, prevents unnecessary re-renders
+impactDescription: evita stale closures, evita re-renders innecesarios
 tags: state, hooks, useState, callbacks
 ---
 
-## Use Dispatch Updaters for State That Depends on Current Value
+## Usa dispatch updaters para el estado que depende del valor actual
 
-When the next state depends on the current state, use a dispatch updater
-(`setState(prev => ...)`) instead of reading the state variable directly in a
-callback. This avoids stale closures and ensures you're comparing against the
-latest value.
+Cuando el siguiente estado depende del estado actual, usa un dispatch updater
+(`setState(prev => ...)`) en lugar de leer la variable de estado directamente en un
+callback. Esto evita stale closures y asegura que estés comparando contra el
+valor más reciente.
 
-**Incorrect (reads state directly):**
+**Incorrecto (lee el estado directamente):**
 
 ```tsx
 const [size, setSize] = useState<Size | undefined>(undefined)
 
 const onLayout = (e: LayoutChangeEvent) => {
   const { width, height } = e.nativeEvent.layout
-  // size may be stale in this closure
+  // size puede estar desactualizado en este closure
   if (size?.width !== width || size?.height !== height) {
     setSize({ width, height })
   }
 }
 ```
 
-**Correct (dispatch updater):**
+**Correcto (dispatch updater):**
 
 ```tsx
 const [size, setSize] = useState<Size | undefined>(undefined)
@@ -40,12 +40,12 @@ const onLayout = (e: LayoutChangeEvent) => {
 }
 ```
 
-Returning the previous value from the updater skips the re-render.
+Devolver el valor anterior desde el updater omite el re-render.
 
-For primitive states, you don't need to compare values before firing a
+Para los estados primitivos, no necesitas comparar los valores antes de disparar un
 re-render.
 
-**Incorrect (unnecessary comparison for primitive state):**
+**Incorrecto (comparación innecesaria para un estado primitivo):**
 
 ```tsx
 const [size, setSize] = useState<Size | undefined>(undefined)
@@ -56,7 +56,7 @@ const onLayout = (e: LayoutChangeEvent) => {
 }
 ```
 
-**Correct (sets primitive state directly):**
+**Correcto (establece el estado primitivo directamente):**
 
 ```tsx
 const [size, setSize] = useState<Size | undefined>(undefined)
@@ -67,10 +67,10 @@ const onLayout = (e: LayoutChangeEvent) => {
 }
 ```
 
-However, if the next state depends on the current state, you should still use a
+Sin embargo, si el siguiente estado depende del estado actual, aun así debes usar un
 dispatch updater.
 
-**Incorrect (reads state directly from the callback):**
+**Incorrecto (lee el estado directamente desde el callback):**
 
 ```tsx
 const [count, setCount] = useState(0)
@@ -80,7 +80,7 @@ const onTap = () => {
 }
 ```
 
-**Correct (dispatch updater):**
+**Correcto (dispatch updater):**
 
 ```tsx
 const [count, setCount] = useState(0)

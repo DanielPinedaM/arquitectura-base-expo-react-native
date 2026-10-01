@@ -1,17 +1,17 @@
 ---
-title: Use Native Menus for Dropdowns and Context Menus
+title: Usa menús nativos para dropdowns y context menus
 impact: HIGH
-impactDescription: native accessibility, platform-consistent UX
+impactDescription: accesibilidad nativa, UX consistente con la plataforma
 tags: user-interface, menus, context-menus, zeego, accessibility
 ---
 
-## Use Native Menus for Dropdowns and Context Menus
+## Usa menús nativos para dropdowns y context menus
 
-Use native platform menus instead of custom JS implementations. Native menus
-provide built-in accessibility, consistent platform UX, and better performance.
-Use [zeego](https://zeego.dev) for cross-platform native menus.
+Usa los menús nativos de la plataforma en lugar de implementaciones personalizadas en JS. Los menús nativos
+proporcionan accesibilidad integrada, una UX consistente con la plataforma y un mejor rendimiento.
+Usa [zeego](https://zeego.dev) para menús nativos multiplataforma.
 
-**Incorrect (custom JS menu):**
+**Incorrecto (menú personalizado en JS):**
 
 ```tsx
 import { useState } from 'react'
@@ -40,7 +40,7 @@ function MyMenu() {
 }
 ```
 
-**Correct (native menu with zeego):**
+**Correcto (menú nativo con zeego):**
 
 ```tsx
 import * as DropdownMenu from 'zeego/dropdown-menu'
@@ -100,7 +100,7 @@ function MyContextMenu() {
 }
 ```
 
-**Checkbox items:**
+**Elementos checkbox:**
 
 ```tsx
 import * as DropdownMenu from 'zeego/dropdown-menu'
@@ -131,7 +131,7 @@ function SettingsMenu() {
 }
 ```
 
-**Submenus:**
+**Submenús:**
 
 ```tsx
 import * as DropdownMenu from 'zeego/dropdown-menu'
@@ -171,4 +171,4 @@ function MenuWithSubmenu() {
 }
 ```
 
-Reference: [Zeego Documentation](https://zeego.dev/components/dropdown-menu)
+Referencia: [Documentación de Zeego](https://zeego.dev/components/dropdown-menu)

@@ -1,18 +1,18 @@
 ---
-title: Use Galeria for Image Galleries and Lightbox
+title: Usa Galeria para galerías de imágenes y lightbox
 impact: MEDIUM
 impactDescription:
-  native shared element transitions, pinch-to-zoom, pan-to-close
+  shared element transitions nativas, pinch-to-zoom, pan-to-close
 tags: images, gallery, lightbox, expo-image, ui
 ---
 
-## Use Galeria for Image Galleries and Lightbox
+## Usa Galeria para galerías de imágenes y lightbox
 
-For image galleries with lightbox (tap to fullscreen), use `@nandorojo/galeria`.
-It provides native shared element transitions with pinch-to-zoom, double-tap
-zoom, and pan-to-close. Works with any image component including `expo-image`.
+Para galerías de imágenes con lightbox (tocar para pantalla completa), usa `@nandorojo/galeria`.
+Proporciona shared element transitions nativas con pinch-to-zoom, zoom con doble
+toque y pan-to-close. Funciona con cualquier componente de imagen, incluido `expo-image`.
 
-**Incorrect (custom modal implementation):**
+**Incorrecto (implementación de modal personalizada):**
 
 ```tsx
 function ImageGallery({ urls }: { urls: string[] }) {
@@ -33,7 +33,7 @@ function ImageGallery({ urls }: { urls: string[] }) {
 }
 ```
 
-**Correct (Galeria with expo-image):**
+**Correcto (Galeria con expo-image):**
 
 ```tsx
 import { Galeria } from '@nandorojo/galeria'
@@ -52,7 +52,7 @@ function ImageGallery({ urls }: { urls: string[] }) {
 }
 ```
 
-**Single image:**
+**Una sola imagen:**
 
 ```tsx
 import { Galeria } from '@nandorojo/galeria'
@@ -69,7 +69,7 @@ function Avatar({ url }: { url: string }) {
 }
 ```
 
-**With low-res thumbnails and high-res fullscreen:**
+**Con thumbnails de baja resolución y pantalla completa de alta resolución:**
 
 ```tsx
 <Galeria urls={highResUrls}>
@@ -81,7 +81,7 @@ function Avatar({ url }: { url: string }) {
 </Galeria>
 ```
 
-**With FlashList:**
+**Con FlashList:**
 
 ```tsx
 <Galeria urls={urls}>
@@ -98,7 +98,7 @@ function Avatar({ url }: { url: string }) {
 </Galeria>
 ```
 
-Works with `expo-image`, `SolitoImage`, `react-native` Image, or any image
-component.
+Funciona con `expo-image`, `SolitoImage`, el Image de `react-native` o cualquier componente
+de imagen.
 
-Reference: [Galeria](https://github.com/nandorojo/galeria)
+Referencia: [Galeria](https://github.com/nandorojo/galeria)

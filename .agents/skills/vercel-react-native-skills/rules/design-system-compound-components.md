@@ -1,19 +1,19 @@
 ---
-title: Use Compound Components Over Polymorphic Children
+title: Usa compound components en lugar de children polimórficos
 impact: MEDIUM
-impactDescription: flexible composition, clearer API
+impactDescription: composición flexible, API más clara
 tags: design-system, components, composition
 ---
 
-## Use Compound Components Over Polymorphic Children
+## Usa compound components en lugar de children polimórficos
 
-Don't create components that can accept a string if they aren't a text node. If
-a component can receive a string child, it must be a dedicated `*Text`
-component. For components like buttons, which can have both a View (or
-Pressable) together with text, use compound components, such a `Button`,
-`ButtonText`, and `ButtonIcon`.
+No crees componentes que puedan aceptar un string si no son un nodo de texto. Si
+un componente puede recibir un string como hijo, debe ser un componente `*Text`
+dedicado. Para componentes como los botones, que pueden tener tanto un View (o
+Pressable) junto con texto, usa compound components, como `Button`,
+`ButtonText` y `ButtonIcon`.
 
-**Incorrect (polymorphic children):**
+**Incorrecto (children polimórficos):**
 
 ```tsx
 import { Pressable, Text } from 'react-native'
@@ -32,12 +32,12 @@ function Button({ children, icon }: ButtonProps) {
   )
 }
 
-// Usage is ambiguous
+// El uso es ambiguo
 <Button icon={<Icon />}>Save</Button>
 <Button><CustomText>Save</CustomText></Button>
 ```
 
-**Correct (compound components):**
+**Correcto (compound components):**
 
 ```tsx
 import { Pressable, Text } from 'react-native'
@@ -54,7 +54,7 @@ function ButtonIcon({ children }: { children: React.ReactNode }) {
   return <>{children}</>
 }
 
-// Usage is explicit and composable
+// El uso es explícito y componible
 <Button>
   <ButtonIcon><SaveIcon /></ButtonIcon>
   <ButtonText>Save</ButtonText>

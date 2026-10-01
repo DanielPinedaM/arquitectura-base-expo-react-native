@@ -1,15 +1,15 @@
 ---
-title: Minimize State Variables and Derive Values
+title: Minimiza las variables de estado y deriva los valores
 impact: MEDIUM
-impactDescription: fewer re-renders, less state drift
+impactDescription: menos re-renders, menos desincronización del estado
 tags: state, derived-state, hooks, optimization
 ---
 
-## Minimize State Variables and Derive Values
+## Minimiza las variables de estado y deriva los valores
 
-Use the fewest state variables possible. If a value can be computed from existing state or props, derive it during render instead of storing it in state. Redundant state causes unnecessary re-renders and can drift out of sync.
+Usa la menor cantidad posible de variables de estado. Si un valor puede calcularse a partir del estado o de las props existentes, derívalo durante el render en lugar de almacenarlo en el estado. El estado redundante provoca re-renders innecesarios y puede desincronizarse.
 
-**Incorrect (redundant state):**
+**Incorrecto (estado redundante):**
 
 ```tsx
 function Cart({ items }: { items: Item[] }) {
@@ -30,7 +30,7 @@ function Cart({ items }: { items: Item[] }) {
 }
 ```
 
-**Correct (derived values):**
+**Correcto (valores derivados):**
 
 ```tsx
 function Cart({ items }: { items: Item[] }) {
@@ -46,20 +46,20 @@ function Cart({ items }: { items: Item[] }) {
 }
 ```
 
-**Another example:**
+**Otro ejemplo:**
 
 ```tsx
-// Incorrect: storing both firstName, lastName, AND fullName
+// Incorrecto: almacenar firstName, lastName Y fullName
 const [firstName, setFirstName] = useState('')
 const [lastName, setLastName] = useState('')
 const [fullName, setFullName] = useState('')
 
-// Correct: derive fullName
+// Correcto: deriva fullName
 const [firstName, setFirstName] = useState('')
 const [lastName, setLastName] = useState('')
 const fullName = `${firstName} ${lastName}`
 ```
 
-State should be the minimal source of truth. Everything else is derived.
+El estado debe ser la fuente de verdad mínima. Todo lo demás se deriva.
 
-Reference: [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)
+Referencia: [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure)

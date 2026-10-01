@@ -1,36 +1,36 @@
 ---
-title: Install Native Dependencies in App Directory
+title: Instala las dependencias nativas en el directorio de la app
 impact: CRITICAL
-impactDescription: required for autolinking to work
+impactDescription: necesario para que funcione el autolinking
 tags: monorepo, native, autolinking, installation
 ---
 
-## Install Native Dependencies in App Directory
+## Instala las dependencias nativas en el directorio de la app
 
-In a monorepo, packages with native code must be installed in the native app's
-directory directly. Autolinking only scans the app's `node_modules`—it won't
-find native dependencies installed in other packages.
+En un monorepo, los paquetes con código nativo deben instalarse directamente en el directorio
+de la app nativa. El autolinking solo escanea el `node_modules` de la app; no
+encontrará las dependencias nativas instaladas en otros paquetes.
 
-**Incorrect (native dep in shared package only):**
-
-```
-packages/
-  ui/
-    package.json  # has react-native-reanimated
-  app/
-    package.json  # missing react-native-reanimated
-```
-
-Autolinking fails—native code not linked.
-
-**Correct (native dep in app directory):**
+**Incorrecto (dependencia nativa solo en el paquete compartido):**
 
 ```
 packages/
   ui/
-    package.json  # has react-native-reanimated
+    package.json  # tiene react-native-reanimated
   app/
-    package.json  # also has react-native-reanimated
+    package.json  # le falta react-native-reanimated
+```
+
+El autolinking falla: el código nativo no se enlaza.
+
+**Correcto (dependencia nativa en el directorio de la app):**
+
+```
+packages/
+  ui/
+    package.json  # tiene react-native-reanimated
+  app/
+    package.json  # también tiene react-native-reanimated
 ```
 
 ```json
@@ -42,5 +42,5 @@ packages/
 }
 ```
 
-Even if the shared package uses the native dependency, the app must also list it
-for autolinking to detect and link the native code.
+Aunque el paquete compartido use la dependencia nativa, la app también debe listarla
+para que el autolinking detecte y enlace el código nativo.

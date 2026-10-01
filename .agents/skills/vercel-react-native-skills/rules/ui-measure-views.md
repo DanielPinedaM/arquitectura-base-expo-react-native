@@ -1,18 +1,18 @@
 ---
-title: Measuring View Dimensions
+title: Medir las dimensiones de las vistas
 impact: MEDIUM
-impactDescription: synchronous measurement, avoid unnecessary re-renders
+impactDescription: medición síncrona, evita re-renders innecesarios
 tags: layout, measurement, onLayout, useLayoutEffect
 ---
 
-## Measuring View Dimensions
+## Medir las dimensiones de las vistas
 
-Use both `useLayoutEffect` (synchronous) and `onLayout` (for updates). The sync
-measurement gives you the initial size immediately; `onLayout` keeps it current
-when the view changes. For non-primitive states, use a dispatch updater to
-compare values and avoid unnecessary re-renders.
+Usa tanto `useLayoutEffect` (síncrono) como `onLayout` (para las actualizaciones). La medición
+síncrona te da el tamaño inicial de inmediato; `onLayout` lo mantiene actualizado
+cuando la vista cambia. Para los estados no primitivos, usa un dispatch updater para
+comparar los valores y evitar re-renders innecesarios.
 
-**Height only:**
+**Solo la altura:**
 
 ```tsx
 import { useLayoutEffect, useRef, useState } from 'react'
@@ -23,10 +23,10 @@ function MeasuredBox({ children }: { children: React.ReactNode }) {
   const [height, setHeight] = useState<number | undefined>(undefined)
 
   useLayoutEffect(() => {
-    // Sync measurement on mount (RN 0.82+)
+    // Medición síncrona al montar (RN 0.82+)
     const rect = ref.current?.getBoundingClientRect()
     if (rect) setHeight(rect.height)
-    // Pre-0.82: ref.current?.measure((x, y, w, h) => setHeight(h))
+    // Antes de 0.82: ref.current?.measure((x, y, w, h) => setHeight(h))
   }, [])
 
   const onLayout = (e: LayoutChangeEvent) => {
@@ -41,7 +41,7 @@ function MeasuredBox({ children }: { children: React.ReactNode }) {
 }
 ```
 
-**Both dimensions:**
+**Ambas dimensiones:**
 
 ```tsx
 import { useLayoutEffect, useRef, useState } from 'react'
@@ -61,7 +61,7 @@ function MeasuredBox({ children }: { children: React.ReactNode }) {
   const onLayout = (e: LayoutChangeEvent) => {
     const { width, height } = e.nativeEvent.layout
     setSize((prev) => {
-      // for non-primitive states, compare values before firing a re-render
+      // para estados no primitivos, compara los valores antes de disparar un re-render
       if (prev?.width === width && prev?.height === height) return prev
       return { width, height }
     })
@@ -75,4 +75,4 @@ function MeasuredBox({ children }: { children: React.ReactNode }) {
 }
 ```
 
-Use functional setState to compare—don't read state directly in the callback.
+Usa el setState funcional para comparar; no leas el estado directamente en el callback.

@@ -1,41 +1,41 @@
 ---
-title: Modern React Native Styling Patterns
+title: Patrones modernos de estilos en React Native
 impact: MEDIUM
-impactDescription: consistent design, smoother borders, cleaner layouts
+impactDescription: diseño consistente, bordes más suaves, layouts más limpios
 tags: styling, css, layout, shadows, gradients
 ---
 
-## Modern React Native Styling Patterns
+## Patrones modernos de estilos en React Native
 
-Follow these styling patterns for cleaner, more consistent React Native code.
+Sigue estos patrones de estilos para un código de React Native más limpio y consistente.
 
-**Always use `borderCurve: 'continuous'` with `borderRadius`:**
+**Usa siempre `borderCurve: 'continuous'` con `borderRadius`:**
 
 ```tsx
-// Incorrect
+// Incorrecto
 { borderRadius: 12 }
 
-// Correct – smoother iOS-style corners
+// Correcto – esquinas más suaves al estilo de iOS
 { borderRadius: 12, borderCurve: 'continuous' }
 ```
 
-**Use `gap` instead of margin for spacing between elements:**
+**Usa `gap` en lugar de margin para el espaciado entre elementos:**
 
 ```tsx
-// Incorrect – margin on children
+// Incorrecto – margin en los hijos
 <View>
   <Text style={{ marginBottom: 8 }}>Title</Text>
   <Text style={{ marginBottom: 8 }}>Subtitle</Text>
 </View>
 
-// Correct – gap on parent
+// Correcto – gap en el padre
 <View style={{ gap: 8 }}>
   <Text>Title</Text>
   <Text>Subtitle</Text>
 </View>
 ```
 
-**Use `padding` for space within, `gap` for space between:**
+**Usa `padding` para el espacio interior y `gap` para el espacio entre elementos:**
 
 ```tsx
 <View style={{ padding: 16, gap: 12 }}>
@@ -44,13 +44,13 @@ Follow these styling patterns for cleaner, more consistent React Native code.
 </View>
 ```
 
-**Use `experimental_backgroundImage` for linear gradients:**
+**Usa `experimental_backgroundImage` para los degradados lineales:**
 
 ```tsx
-// Incorrect – third-party gradient library
+// Incorrecto – librería de degradados de terceros
 <LinearGradient colors={['#000', '#fff']} />
 
-// Correct – native CSS gradient syntax
+// Correcto – sintaxis nativa de degradados CSS
 <View
   style={{
     experimental_backgroundImage: 'linear-gradient(to bottom, #000, #fff)',
@@ -58,30 +58,30 @@ Follow these styling patterns for cleaner, more consistent React Native code.
 />
 ```
 
-**Use CSS `boxShadow` string syntax for shadows:**
+**Usa la sintaxis de string de CSS `boxShadow` para las sombras:**
 
 ```tsx
-// Incorrect – legacy shadow objects or elevation
+// Incorrecto – objetos de sombra legacy o elevation
 { shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1 }
 { elevation: 4 }
 
-// Correct – CSS box-shadow syntax
+// Correcto – sintaxis CSS de box-shadow
 { boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)' }
 ```
 
-**Avoid multiple font sizes – use weight and color for emphasis:**
+**Evita múltiples tamaños de fuente – usa el peso y el color para dar énfasis:**
 
 ```tsx
-// Incorrect – varying font sizes for hierarchy
+// Incorrecto – tamaños de fuente variables para la jerarquía
 <Text style={{ fontSize: 18 }}>Title</Text>
 <Text style={{ fontSize: 14 }}>Subtitle</Text>
 <Text style={{ fontSize: 12 }}>Caption</Text>
 
-// Correct – consistent size, vary weight and color
+// Correcto – tamaño consistente, varía el peso y el color
 <Text style={{ fontWeight: '600' }}>Title</Text>
 <Text style={{ color: '#666' }}>Subtitle</Text>
 <Text style={{ color: '#999' }}>Caption</Text>
 ```
 
-Limiting font sizes creates visual consistency. Use `fontWeight` (bold/semibold)
-and grayscale colors for hierarchy instead.
+Limitar los tamaños de fuente crea consistencia visual. En su lugar, usa `fontWeight` (bold/semibold)
+y colores en escala de grises para la jerarquía.

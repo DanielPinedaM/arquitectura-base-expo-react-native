@@ -1,17 +1,17 @@
 ---
-title: Never Track Scroll Position in useState
+title: Nunca rastrees la posición del scroll en useState
 impact: HIGH
-impactDescription: prevents render thrashing during scroll
+impactDescription: evita el render thrashing durante el scroll
 tags: scroll, performance, reanimated, useRef
 ---
 
-## Never Track Scroll Position in useState
+## Nunca rastrees la posición del scroll en useState
 
-Never store scroll position in `useState`. Scroll events fire rapidly—state
-updates cause render thrashing and dropped frames. Use a Reanimated shared value
-for animations or a ref for non-reactive tracking.
+Nunca almacenes la posición del scroll en `useState`. Los eventos de scroll se disparan rápidamente: las actualizaciones
+de estado provocan render thrashing y frames perdidos. Usa un shared value de Reanimated
+para las animaciones o una ref para un rastreo no reactivo.
 
-**Incorrect (useState causes jank):**
+**Incorrecto (useState provoca jank):**
 
 ```tsx
 import { useState } from 'react'
@@ -25,14 +25,14 @@ function Feed() {
   const [scrollY, setScrollY] = useState(0)
 
   const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    setScrollY(e.nativeEvent.contentOffset.y) // re-renders on every frame
+    setScrollY(e.nativeEvent.contentOffset.y) // hace re-render en cada frame
   }
 
   return <ScrollView onScroll={onScroll} scrollEventThrottle={16} />
 }
 ```
 
-**Correct (Reanimated for animations):**
+**Correcto (Reanimated para animaciones):**
 
 ```tsx
 import Animated, {
@@ -45,22 +45,22 @@ function Feed() {
 
   const onScroll = useAnimatedScrollHandler({
     onScroll: (e) => {
-      scrollY.value = e.contentOffset.y // runs on UI thread, no re-render
+      scrollY.value = e.contentOffset.y // se ejecuta en el UI thread, sin re-render
     },
   })
 
   return (
     <Animated.ScrollView
       onScroll={onScroll}
-      // higher number has better performance, but it fires less often.
-      // unset this if you need higher precision over performance.
+      // un número más alto tiene mejor rendimiento, pero se dispara con menos frecuencia.
+      // quita esto si necesitas mayor precisión por encima del rendimiento.
       scrollEventThrottle={16}
     />
   )
 }
 ```
 
-**Correct (ref for non-reactive tracking):**
+**Correcto (ref para un rastreo no reactivo):**
 
 ```tsx
 import { useRef } from 'react'
@@ -74,7 +74,7 @@ function Feed() {
   const scrollY = useRef(0)
 
   const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    scrollY.current = e.nativeEvent.contentOffset.y // no re-render
+    scrollY.current = e.nativeEvent.contentOffset.y // sin re-render
   }
 
   return <ScrollView onScroll={onScroll} scrollEventThrottle={16} />
