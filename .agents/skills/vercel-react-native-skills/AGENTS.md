@@ -12,12 +12,6 @@ Enero de 2026
 
 ---
 
-## Resumen
-
-Guía completa de optimización del rendimiento para aplicaciones de React Native, diseñada para agentes de IA y LLMs. Contiene más de 35 reglas en 13 categorías, priorizadas por impacto, desde críticas (renderizado fundamental, rendimiento de listas) hasta incrementales (fuentes, imports). Cada regla incluye explicaciones detalladas, ejemplos del mundo real que comparan implementaciones incorrectas vs. correctas y métricas de impacto específicas para guiar la refactorización y la generación de código automatizadas.
-
----
-
 ## Tabla de contenidos
 
 1. [Renderizado fundamental](#1-renderizado-fundamental) — **CRITICAL**
