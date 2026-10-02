@@ -8,7 +8,7 @@ description:
 license: MIT
 metadata:
   author: vercel
-  version: '1.0.0'
+  version: "1.0.0"
 ---
 
 # Skills de React Native
@@ -200,16 +200,16 @@ Consulta estos lineamientos cuando:
 
 ## Categorías de reglas por prioridad
 
-| Prioridad | Categoría                | Impacto  | Prefijo              |
-| --------- | ------------------------ | -------- | -------------------- |
-| 1         | Rendimiento de listas    | CRITICAL | `list-performance-`  |
-| 2         | Animación                | HIGH     | `animation-`         |
-| 3         | Navegación               | HIGH     | `navigation-`        |
-| 4         | Patrones de UI           | HIGH     | `ui-`                |
-| 5         | Gestión del estado       | MEDIUM   | `react-state-`       |
-| 6         | Renderizado              | MEDIUM   | `rendering-`         |
-| 7         | Monorepo                 | MEDIUM   | `monorepo-`          |
-| 8         | Configuración            | LOW      | `fonts-`, `imports-` |
+| Prioridad | Categoría             | Impacto  | Prefijo              |
+| --------- | --------------------- | -------- | -------------------- |
+| 1         | Rendimiento de listas | CRITICAL | `list-performance-`  |
+| 2         | Animación             | HIGH     | `animation-`         |
+| 3         | Navegación            | HIGH     | `navigation-`        |
+| 4         | Patrones de UI        | HIGH     | `ui-`                |
+| 5         | Gestión del estado    | MEDIUM   | `react-state-`       |
+| 6         | Renderizado           | MEDIUM   | `rendering-`         |
+| 7         | Monorepo              | MEDIUM   | `monorepo-`          |
+| 8         | Configuración         | LOW      | `fonts-`, `imports-` |
 
 ## Referencia rápida
 
