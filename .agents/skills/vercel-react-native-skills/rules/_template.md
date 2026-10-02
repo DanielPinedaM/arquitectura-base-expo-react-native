@@ -15,14 +15,14 @@ Breve explicación de la regla y de por qué es importante. Debe ser clara y con
 
 ```typescript
 // Ejemplo de código malo aquí
-const bad = example()
+const bad = example();
 ```
 
 **Correcto (descripción de lo que está bien):**
 
 ```typescript
 // Ejemplo de código bueno aquí
-const good = example()
+const good = example();
 ```
 
 Referencia: [Enlace a la documentación o recurso](https://example.com)
