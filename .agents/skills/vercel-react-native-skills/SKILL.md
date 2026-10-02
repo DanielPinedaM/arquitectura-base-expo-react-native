@@ -187,7 +187,7 @@ Referencia: [Enlace](https://example.com)
 - `LOW` - Mejoras incrementales
 ```
 
-## Cuándo aplicarla
+## Cuándo aplicar la skill
 
 Consulta estos lineamientos cuando:
 
