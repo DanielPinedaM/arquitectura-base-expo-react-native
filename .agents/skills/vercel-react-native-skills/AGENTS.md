@@ -335,8 +335,6 @@ return (
 )
 ```
 
-Referencia: [https://example.com](https://example.com)
-
 ### 2.3 Mantén ligeros los elementos de la lista
 
 **Impacto: HIGH (reduce el tiempo de render de los elementos visibles durante el scroll)**

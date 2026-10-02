@@ -40,5 +40,3 @@ return (
   />
 )
 ```
-
-Referencia: [Enlace a la documentación o recurso](https://example.com)

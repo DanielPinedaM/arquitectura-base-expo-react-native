@@ -168,8 +168,6 @@ Breve explicación de la regla y de por qué es importante.
 // Ejemplo de código bueno
 ```
 
-Referencia: [Enlace](https://example.com)
-
 ```
 
 ## Convención de nombres de archivos
