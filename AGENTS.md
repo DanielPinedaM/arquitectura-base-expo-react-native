@@ -17,7 +17,7 @@ Cuando las fuentes se contradicen, gana la de número menor en la columna **Prio
 
 | Prioridad | Fuente | ¿Qué es? | ¿Cuándo leerlo? |
 | --- | --- | --- | --- |
-| 1 | [Skill `expo-conventions`](.agents/skills/next-conventions/SKILL.md) | Reglas propias del proyecto | Antes de crear, mover, modificar o revisar código, y al responder cómo se hace algo en este proyecto. |
+| 1 | [Skill `expo-conventions`](.agents/skills/expo-conventions/SKILL.md) | Reglas propias del proyecto | Antes de crear, mover, modificar o revisar código, y al responder cómo se hace algo en este proyecto. |
 | 2 | [Skill `vercel-react-native-skills`](.agents/skills/vercel-react-native-skills/SKILL.md) | Reglas de terceros de Vercel: rendimiento de React y Expo | Al crear, modificar o revisar componentes, páginas u obtención de datos, y al optimizar el rendimiento o el bundle. |
 | 3 | [Skill `vercel-composition-patterns`](.agents/skills/vercel-composition-patterns/SKILL.md) | Reglas de terceros: composición de componentes de React (Vercel) | Al crear, modificar o revisar la API de un componente reutilizable: props booleanas, compound components, render props, context providers o `forwardRef`. |
 | 4 | [llms.txt de Expo](https://docs.expo.dev/llms.txt) | Tabla de contenido con enlaces a la documentación oficial de Expo | Leer solo el índice no basta: abre las páginas enlazadas que correspondan. Hazlo al responder sobre una API de Expo, al usarla (aunque creas conocerla) y ante errores. |
