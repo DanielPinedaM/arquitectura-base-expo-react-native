@@ -173,3 +173,6 @@ Cada archivo de regla contiene: una breve explicación de por qué es importante
 | Título y ruta archivo | ¿Cuándo leerlo? |
 | --- | --- |
 | [Carga las fuentes de forma nativa en tiempo de build](reglas/fuentes/fonts-config-plugin.md) | Al agregar fuentes personalizadas a una app de Expo, o cuando ves `useFonts` o `Font.loadAsync` con una pantalla que espera a que carguen: incrusta las fuentes en tiempo de build con el config plugin de `expo-font` en `app.json` y ejecuta `npx expo prebuild`. |
+
+**Referencias:**
+* [Esta skill es traducida del GitHub de Vercel](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-native-skills)
