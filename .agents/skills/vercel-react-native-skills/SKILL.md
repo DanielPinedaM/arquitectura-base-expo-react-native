@@ -11,9 +11,9 @@ description:
 
 ## Resumen
 
-Guía completa de buenas prácticas y optimización del rendimiento para aplicaciones de React Native y Expo, diseñada para agentes de IA y LLMs. Contiene 36 reglas en 14 categorías que cubren rendimiento, animaciones, patrones de UI y optimizaciones específicas de cada plataforma, priorizadas por impacto, desde críticas (renderizado fundamental) hasta incrementales (fuentes, imports). Cada regla incluye explicaciones detalladas, ejemplos del mundo real que comparan implementaciones incorrectas vs. correctas y métricas de impacto específicas para guiar la refactorización y la generación de código automatizadas.
+Guía completa de buenas prácticas y optimización del rendimiento para aplicaciones de React Native y Expo, diseñada para agentes de IA y LLMs. Contiene reglas y categorías que cubren rendimiento, animaciones, patrones de UI y optimizaciones específicas de cada plataforma, priorizadas por impacto, desde críticas (renderizado fundamental) hasta incrementales (fuentes, imports). Cada regla incluye explicaciones detalladas, ejemplos del mundo real que comparan implementaciones incorrectas vs. correctas y métricas de impacto específicas para guiar la refactorización y la generación de código automatizadas.
 
-## Cuándo aplicar la skill
+## ¿Cuándo aplicar la skill?
 
 Consulta estas reglas cuando:
 
@@ -59,18 +59,14 @@ Cada archivo de regla contiene: una breve explicación de por qué es importante
 
 ## Tabla de Contenido
 
-### 1. Renderizado fundamental (CRITICAL)
-
-Carpeta: [reglas/renderizado-fundamental/](reglas/renderizado-fundamental/)
+### [1. Renderizado fundamental (CRITICAL)](reglas/renderizado-fundamental/)
 
 | Título y ruta archivo | ¿Cuándo leerlo? |
 | --- | --- |
 | [Nunca uses && con valores potencialmente falsy](reglas/renderizado-fundamental/rendering-no-falsy-and.md) | Al renderizar contenido condicional con `&&` en JSX (`{count && <Text>...</Text>}`, `{name && ...}`) cuando el valor puede ser `0` o un string vacío, o al depurar un crash en producción que aparece solo con ciertos datos: usa un ternario con `null`, `!!` o un early return, y habilita la regla de lint `react/jsx-no-leaked-render`. |
 | [Envuelve los strings en componentes Text](reglas/renderizado-fundamental/rendering-texto-en-componente-text.md) | Al escribir JSX que pone un string o una interpolación (`Hello, {name}!`) directamente dentro de un `<View>`, o al ver el error «Text strings must be rendered within a <Text> component»: todo texto debe ir dentro de un componente `<Text>`. |
 
-### 2. Rendimiento de listas (HIGH)
-
-Carpeta: [reglas/rendimiento-de-listas/](reglas/rendimiento-de-listas/)
+### [2. Rendimiento de listas (HIGH)](reglas/rendimiento-de-listas/)
 
 | Título y ruta archivo | ¿Cuándo leerlo? |
 | --- | --- |
@@ -83,9 +79,7 @@ Carpeta: [reglas/rendimiento-de-listas/](reglas/rendimiento-de-listas/)
 | [Usa imágenes comprimidas en las listas](reglas/rendimiento-de-listas/list-performance-imagenes.md) | Al mostrar imágenes dentro de los elementos de una lista (thumbnails de productos, avatares) que se cargan en resolución completa para un tamaño chico, o cuando el scroll tiene jank o consume mucha memoria por las imágenes: solicita imágenes comprimidas del tamaño apropiado (al doble para retina, con parámetros de redimensionamiento del CDN) y usa `expo-image` o `SolitoImage`. |
 | [Usa tipos de elementos para listas heterogéneas](reglas/rendimiento-de-listas/list-performance-tipos-de-elementos.md) | Cuando una lista mezcla distintos layouts de elementos (encabezados, mensajes, imágenes) y un solo componente decide con condicionales qué renderizar: agrega un campo `type` a cada elemento y pásale `getItemType` (y `getEstimatedItemSize`) a `LegendList` para que cada tipo tenga su propio pool de reciclaje. |
 
-### 3. Animación (HIGH)
-
-Carpeta: [reglas/animacion/](reglas/animacion/)
+### [3. Animación (HIGH)](reglas/animacion/)
 
 | Título y ruta archivo | ¿Cuándo leerlo? |
 | --- | --- |
@@ -93,25 +87,19 @@ Carpeta: [reglas/animacion/](reglas/animacion/)
 | [Prefiere useDerivedValue en lugar de useAnimatedReaction](reglas/animacion/animation-derived-value.md) | Cuando un shared value de Reanimated se calcula a partir de otro (por ejemplo, `opacity` a partir de `progress`) y se está usando `useAnimatedReaction` para asignarlo: usa `useDerivedValue`, y reserva `useAnimatedReaction` para efectos secundarios que no producen un valor (haptics, logging, `runOnJS`). |
 | [Usa GestureDetector para estados de press animados](reglas/animacion/animation-gesture-detector-press.md) | Al crear un botón o un elemento que se anima al presionarlo (scale u opacity) usando `onPressIn`/`onPressOut` de `Pressable`: usa `GestureDetector` con `Gesture.Tap()` (`onBegin`, `onFinalize`, `onEnd` con `runOnJS`) y un shared value que guarde el estado del press, para que la animación corra en el UI thread. |
 
-### 4. Rendimiento del scroll (HIGH)
-
-Carpeta: [reglas/rendimiento-del-scroll/](reglas/rendimiento-del-scroll/)
+### [4. Rendimiento del scroll (HIGH)](reglas/rendimiento-del-scroll/)
 
 | Título y ruta archivo | ¿Cuándo leerlo? |
 | --- | --- |
 | [Nunca rastrees la posición del scroll en useState](reglas/rendimiento-del-scroll/scroll-posicion-sin-estado.md) | Cuando necesitas la posición del scroll (`onScroll`, `contentOffset.y`) para animar un header, mostrar un botón o rastrearla, y está guardada en `useState`, lo que provoca re-renders en cada frame: usa un shared value con `useAnimatedScrollHandler` y `Animated.ScrollView` para animaciones, o `useRef` para un rastreo no reactivo. |
 
-### 5. Navegación (HIGH)
-
-Carpeta: [reglas/navegacion/](reglas/navegacion/)
+### [5. Navegación (HIGH)](reglas/navegacion/)
 
 | Título y ruta archivo | ¿Cuándo leerlo? |
 | --- | --- |
 | [Usa navigators nativos para la navegación](reglas/navegacion/navigation-navigators-nativos.md) | Al configurar la navegación con stacks, tabs o headers (`@react-navigation/stack`, `@react-navigation/bottom-tabs`, `expo-router`), o al crear un header personalizado: usa navigators nativos (`@react-navigation/native-stack`, `react-native-bottom-tabs`, `NativeTabs` de expo-router) y las opciones de header nativas (`headerLargeTitleEnabled`, `headerSearchBarOptions`). |
 
-### 6. Estado de React (MEDIUM)
-
-Carpeta: [reglas/estado-de-react/](reglas/estado-de-react/)
+### [6. Estado de React (MEDIUM)](reglas/estado-de-react/)
 
 | Título y ruta archivo | ¿Cuándo leerlo? |
 | --- | --- |
@@ -119,26 +107,20 @@ Carpeta: [reglas/estado-de-react/](reglas/estado-de-react/)
 | [Usa un estado de fallback en lugar de initialState](reglas/estado-de-react/react-state-fallback.md) | Cuando un `useState` se inicializa con una prop o con datos del servidor (`useState(defaultEnabled)`, `useState(data.theme)`) y queda desactualizado cuando esa fuente cambia: usa `undefined` como estado inicial y `??` para recurrir al valor del padre o del servidor, de modo que el estado guarde solo la elección del usuario. |
 | [Dispatch updaters de useState para el estado que depende del valor actual](reglas/estado-de-react/react-state-dispatcher.md) | Cuando el siguiente estado depende del actual dentro de un callback (`setCount(count + 1)`, comparar el `size` anterior en `onLayout`) y hay riesgo de stale closures o de re-renders innecesarios: usa un dispatch updater (`setState(prev => ...)`) y devuelve `prev` para omitir el re-render; con estados primitivos, establece el valor directamente. |
 
-### 7. Arquitectura del estado (MEDIUM)
-
-Carpeta: [reglas/arquitectura-del-estado/](reglas/arquitectura-del-estado/)
+### [7. Arquitectura del estado (MEDIUM)](reglas/arquitectura-del-estado/)
 
 | Título y ruta archivo | ¿Cuándo leerlo? |
 | --- | --- |
 | [El estado debe representar el ground truth](reglas/arquitectura-del-estado/state-ground-truth.md) | Al decidir qué guardar en `useState` o en un shared value de Reanimated para una interacción o una animación: guarda el estado real (`pressed`, `progress`, `isOpen`) y deriva los valores visuales (`scale`, `opacity`, `translateY`, `height`) con cómputo o `interpolate`, en lugar de guardar el resultado visual o sincronizarlo con `useEffect`. |
 
-### 8. React Compiler (MEDIUM)
-
-Carpeta: [reglas/react-compiler/](reglas/react-compiler/)
+### [8. React Compiler (MEDIUM)](reglas/react-compiler/)
 
 | Título y ruta archivo | ¿Cuándo leerlo? |
 | --- | --- |
 | [Desestructura las funciones al inicio del render (React Compiler)](reglas/react-compiler/react-compiler-desestructurar-funciones.md) | Solo si el proyecto usa React Compiler: al llamar funciones de las props o de un hook con acceso por punto dentro de un handler (`props.onSave()`, `router.push()` con `const router = useRouter()`), desestructúralas al inicio del render (`{ onSave }`, `const { push } = useRouter()`) para que el compiler las use como claves de caché estables. |
 | [Usa .get() y .set() para los shared values de Reanimated (no .value)](reglas/react-compiler/react-compiler-reanimated-shared-values.md) | Solo si el proyecto usa React Compiler: al leer o escribir shared values de Reanimated (`useSharedValue`) con `.value`, usa `.get()` y `.set()`, porque el compiler no puede rastrear el acceso a la propiedad `.value`. |
 
-### 9. Interfaz de usuario (MEDIUM)
-
-Carpeta: [reglas/interfaz-de-usuario/](reglas/interfaz-de-usuario/)
+### [9. Interfaz de usuario (MEDIUM)](reglas/interfaz-de-usuario/)
 
 | Título y ruta archivo | ¿Cuándo leerlo? |
 | --- | --- |
@@ -152,55 +134,33 @@ Carpeta: [reglas/interfaz-de-usuario/](reglas/interfaz-de-usuario/)
 | [Usa modales nativos en lugar de bottom sheets basados en JS](reglas/interfaz-de-usuario/ui-modales-nativos.md) | Al mostrar un bottom sheet, un form sheet o un modal, o cuando ves una librería de bottom sheet basada en JS (`snapPoints`, `sheetRef.current?.expand()`): usa el `<Modal>` nativo con `presentationStyle='formSheet'`, o `presentation: 'formSheet'` con `sheetAllowedDetents` en React Navigation v7. |
 | [Usa Pressable en lugar de los componentes Touchable](reglas/interfaz-de-usuario/ui-pressable.md) | Al crear un botón o un elemento táctil, o cuando ves `TouchableOpacity` o `TouchableHighlight`: usa `Pressable` de `react-native`, o el de `react-native-gesture-handler` dentro de listas desplazables; para animar el press (scale, opacity) se usa `GestureDetector`. |
 
-### 10. Design System (MEDIUM)
-
-Carpeta: [reglas/design-system/](reglas/design-system/)
+### [10. Design System (MEDIUM)](reglas/design-system/)
 
 | Título y ruta archivo | ¿Cuándo leerlo? |
 | --- | --- |
 | [Usa compound components en lugar de children polimórficos](reglas/design-system/design-system-compound-components.md) | Al crear componentes de un design system que reciben `children` de tipo `string \| React.ReactNode` y deciden con `typeof children === 'string'` si envolverlos en `<Text>` (botones, chips, badges), o que aceptan props como `icon`: usa compound components (`Button`, `ButtonText`, `ButtonIcon`) y deja que solo los componentes `*Text` reciban strings. |
 
-### 11. Monorepo (LOW)
-
-Carpeta: [reglas/monorepo/](reglas/monorepo/)
+### [11. Monorepo (LOW)](reglas/monorepo/)
 
 | Título y ruta archivo | ¿Cuándo leerlo? |
 | --- | --- |
 | [Instala las dependencias nativas en el directorio de la app](reglas/monorepo/monorepo-dependencias-nativas-en-la-app.md) | En un monorepo, cuando un paquete compartido (`packages/ui`) usa una dependencia con código nativo (`react-native-reanimated`) o el autolinking no enlaza un módulo nativo: instala esa dependencia también en el `package.json` de la app nativa, porque el autolinking solo escanea el `node_modules` de la app. |
 | [Usa una única versión de cada dependencia en todo el monorepo](reglas/monorepo/monorepo-version-unica-de-dependencias.md) | En un monorepo, al agregar o actualizar una dependencia en varios paquetes, o cuando hay versiones distintas o rangos (`^3.0.0` y `^3.5.0`) que duplican código en el bundle: usa una única versión exacta en todos los paquetes, forzada en la raíz con `overrides` de pnpm o npm, `resolutions` de yarn o syncpack. |
 
-### 12. Dependencias de terceros (LOW)
-
-Carpeta: [reglas/dependencias-de-terceros/](reglas/dependencias-de-terceros/)
+### [12. Dependencias de terceros (LOW)](reglas/dependencias-de-terceros/)
 
 | Título y ruta archivo | ¿Cuándo leerlo? |
 | --- | --- |
 | [Importa desde la carpeta del design system](reglas/dependencias-de-terceros/imports-carpeta-del-design-system.md) | Al importar componentes básicos de `react-native` o de librerías de UI (`View`, `Text`, `Button`) en el código de la app, o al crear la carpeta de componentes compartidos: re-exporta esas dependencias desde una carpeta del design system (`@/components/view`) y haz que la app importe desde ahí, para poder cambiarlas de forma global. |
 
-### 13. JavaScript (LOW)
-
-Carpeta: [reglas/javascript/](reglas/javascript/)
+### [13. JavaScript (LOW)](reglas/javascript/)
 
 | Título y ruta archivo | ¿Cuándo leerlo? |
 | --- | --- |
 | [Haz hoisting de la creación de formatters de Intl](reglas/javascript/js-hoist-intl.md) | Al formatear fechas, monedas, porcentajes o tiempos relativos con `Intl.DateTimeFormat`, `Intl.NumberFormat` o `Intl.RelativeTimeFormat` dentro de un componente, del render o de un bucle: crea el formatter una sola vez a nivel de módulo, o con `useMemo` si el locale es dinámico. |
 
-### 14. Fuentes (LOW)
-
-Carpeta: [reglas/fuentes/](reglas/fuentes/)
+### [14. Fuentes (LOW)](reglas/fuentes/)
 
 | Título y ruta archivo | ¿Cuándo leerlo? |
 | --- | --- |
 | [Carga las fuentes de forma nativa en tiempo de build](reglas/fuentes/fonts-config-plugin.md) | Al agregar fuentes personalizadas a una app de Expo, o cuando ves `useFonts` o `Font.loadAsync` con una pantalla que espera a que carguen: incrusta las fuentes en tiempo de build con el config plugin de `expo-font` en `app.json` y ejecuta `npx expo prebuild`. |
-
-### Crear una nueva regla
-
-Estos archivos no contienen buenas prácticas: solo sirven para crear una nueva regla. Si creas una regla nueva, agrégala a esta [Tabla de Contenido](#tabla-de-contenido), bajo el subtítulo de su categoría, con su ¿Cuándo leerlo?, y actualiza el conteo «N reglas en M categorías» del [Resumen](#resumen). Si la regla necesita una categoría nueva, primero crea la categoría: agrega su sección al archivo de secciones, crea su subcarpeta, agrega su prefijo a la lista de prefijos de la guía y agrégala a las [Categorías de reglas por prioridad](#categorías-de-reglas-por-prioridad) y a esta Tabla de Contenido, según su prioridad, y actualiza también el conteo de categorías del Resumen.
-
-Carpeta: [reglas/crear-nueva-regla/](reglas/crear-nueva-regla/)
-
-| Título y ruta archivo | ¿Cuándo leerlo? |
-| --- | --- |
-| [Secciones](reglas/crear-nueva-regla/_secciones.md) | Solo cuando se desee crear una nueva regla: para consultar las secciones (categorías) de la skill, con su orden, su impacto, su descripción y el prefijo de archivo de cada una, o para agregar la sección de una categoría nueva. |
-| [Plantilla para crear nuevas reglas](reglas/crear-nueva-regla/_plantilla.md) | Solo cuando se desee crear una nueva regla: para copiar la plantilla del archivo de regla, con el frontmatter (`title`, `impact`, `impactDescription`, `tags`), la línea de impacto y los ejemplos de código incorrecto y correcto. |
-| [Cómo crear una nueva regla](reglas/crear-nueva-regla/como-crear-una-nueva-regla.md) | Solo cuando se desee crear una nueva regla: para seguir los pasos (copiar la plantilla, elegir el prefijo y la subcarpeta de la categoría, agregar la regla a la Tabla de Contenido y actualizar el conteo del Resumen), crear una categoría nueva si ninguna corresponde, y consultar la estructura de la skill, la estructura de los archivos de reglas, la convención de nombres y los niveles de impacto. |
