@@ -5,10 +5,6 @@ description:
   al construir componentes de React Native, optimizar el rendimiento de las listas,
   implementar animaciones o trabajar con módulos nativos. Se activa en tareas
   que involucran React Native, Expo, rendimiento móvil o APIs nativas de la plataforma.
-license: MIT
-metadata:
-  author: vercel
-  version: "1.0.0"
 ---
 
 # Skills de React Native
@@ -19,7 +15,7 @@ Guía completa de buenas prácticas y optimización del rendimiento para aplicac
 
 ## Cuándo aplicar la skill
 
-Consulta estos lineamientos cuando:
+Consulta estas reglas cuando:
 
 - Construyas apps de React Native o Expo
 - Optimices el rendimiento de las listas y del scroll

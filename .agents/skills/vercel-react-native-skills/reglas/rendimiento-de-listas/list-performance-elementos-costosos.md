@@ -82,7 +82,7 @@ function ProductRow({ id, name }: Props) {
 }
 ```
 
-**Lineamientos para los elementos de la lista:**
+**Reglas para los elementos de la lista:**
 
 - Sin queries ni obtención de datos
 - Sin cómputos costosos (muévelos al padre o memoízalos a nivel del padre)
