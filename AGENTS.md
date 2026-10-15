@@ -24,7 +24,7 @@ Cuando las fuentes se contradicen, gana la de número menor en la columna **Prio
 | 5 | Datos de entrenamiento | Tu conocimiento previo | Puedes usarlo, pero las fuentes anteriores tienen prioridad: este proyecto usa Expo 57, cuyos breaking changes pueden haberlo dejado desactualizado. Que esté desactualizado no significa que esté mal; solo que puede no aplicar a esta versión. |
 
 ## Preguntar
-Si detectas un error, una inconsistencia o una ambigüedad, o tienes alguna duda, detente y pregúntame antes de escribir o modificar código. No supongas cómo debe implementarse algo.
+Las modificaciones triviales se implementan directamente; las de complejidad media o alta, solo después de utilizar la [skill `question-me`](.agents/skills/question-me/SKILL.md)
 
 **Razón:** preguntar cuesta menos que revisar y deshacer código basado en una suposición incorrecta.
 
