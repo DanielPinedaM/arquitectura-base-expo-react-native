@@ -42,8 +42,7 @@
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
-    "typescript": "~6.0.3",
-    "@playwright/cli": "^0.1.22"
+    "typescript": "~6.0.3"
   },
   "scripts": {
     "start": "expo start",
