@@ -10,6 +10,11 @@ Arquitectura base agnóstica a las features para iniciar un nuevo proyecto en Ex
 
 # Reglas **OBLIGATORIAS** de Expo
 
+## Preguntar
+Las modificaciones triviales se implementan directamente; las de complejidad media o alta, solo después de utilizar la [skill `question-me`](.agents/skills/question-me/SKILL.md)
+
+**Razón:** preguntar cuesta menos que revisar y deshacer código basado en una suposición incorrecta.
+
 ## Fuentes de consulta
 Antes de editar código y responder, consulta solo las fuentes cuya columna **¿Cuándo leerlo?** coincida con la tarea, y aplica a la vez las reglas y la documentación consultadas.
 
@@ -22,11 +27,6 @@ Cuando las fuentes se contradicen, gana la de número menor en la columna **Prio
 | 3 | [Skill `vercel-composition-patterns`](.agents/skills/vercel-composition-patterns/SKILL.md) | Reglas de terceros de Vercel sobre composición de componentes de React | Al crear, modificar o revisar la API de un componente reutilizable: props booleanas, compound components, render props, context providers o `forwardRef`. |
 | 4 | [llms.txt de Expo](https://docs.expo.dev/llms.txt) | Tabla de contenido con enlaces a la documentación oficial de Expo | Leer solo el índice no basta: abre las páginas enlazadas que correspondan. Hazlo al responder y usar APIs de Expo (aunque creas conocerla) y ante errores |
 | 5 | Datos de entrenamiento | Tu conocimiento previo | Puedes usarlo, pero las fuentes anteriores tienen prioridad: este proyecto usa Expo 57, cuyos breaking changes pueden haberlo dejado desactualizado. Que esté desactualizado no significa que esté mal; solo que puede no aplicar a esta versión. |
-
-## Preguntar
-Las modificaciones triviales se implementan directamente; las de complejidad media o alta, solo después de utilizar la [skill `question-me`](.agents/skills/question-me/SKILL.md)
-
-**Razón:** preguntar cuesta menos que revisar y deshacer código basado en una suposición incorrecta.
 
 ## Nuevos Modulos
 Priorizar los módulos recomendados de Expo sobre las bibliotecas de terceros y verificar sus habilidades antes de agregar dependencias. Consulta la documentación: https://docs.expo.dev/versions/latest/index.md
