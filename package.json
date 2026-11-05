@@ -1,6 +1,7 @@
 {
   "name": "expo-react-native",
   "main": "expo-router/entry",
+  "type": "module",
   "version": "1.0.0",
   "packageManager": "pnpm@12.11.2",
   "devEngines": {
@@ -45,11 +46,14 @@
     "typescript": "~6.0.3"
   },
   "scripts": {
-    "start": "expo start",
+    "start:local": "APP_ENV=localhost expo start",
+    "start:prod": "APP_ENV=prod expo start",
+    "start:test": "APP_ENV=test expo start",
+    "build:android:test": "pnpm dlx rimraf dist && APP_ENV=test expo export --platform android --output-dir dist",
+    "build:android:prod": "pnpm dlx rimraf dist && APP_ENV=prod expo export --platform android --output-dir dist",
+    "build:ios:test": "pnpm dlx rimraf dist && APP_ENV=test expo export --platform ios --output-dir dist",
+    "build:ios:prod": "pnpm dlx rimraf dist && APP_ENV=prod expo export --platform ios --output-dir dist",
     "reset-project": "node ./scripts/reset-project.js",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
     "lint": "expo lint"
   },
   "private": true

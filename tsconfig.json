@@ -3,18 +3,15 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@/assets/*": [
-        "./assets/*"
-      ]
+      /* -------------  carpeta contenedora de codigo fuente ------------- */
+      "@/*": ["./src/*"],
+
+      /* ------------- carpeta para multimedia ------------- */
+      "@/assets/*": ["./assets/*"],
+
+      /* -------------  carpeta de variables de entorno ------------- */
+      "@/environments/*": ["./environments/*"]
     }
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts"
-  ]
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
 }

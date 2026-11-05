@@ -1,0 +1,3 @@
+# ejecutar los scripts de package.json con el shell multiplataforma de pnpm, para que la sintaxis
+# APP_ENV=<ambiente> comando funcione igual en Windows, macOS y Linux
+shellEmulator: true
