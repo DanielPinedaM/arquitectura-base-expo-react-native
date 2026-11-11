@@ -1,5 +1,4 @@
 ---
-title: Usa navigators nativos para la navegación
 impact: HIGH
 impactDescription: rendimiento nativo, UI apropiada para cada plataforma
 tags: navigation, react-navigation, expo-router, native-stack, tabs

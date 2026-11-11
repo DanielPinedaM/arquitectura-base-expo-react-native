@@ -1,5 +1,4 @@
 ---
-title: Usa expo-image para imágenes optimizadas
 impact: HIGH
 impactDescription: eficiencia de memoria, caché, placeholders con blurhash, carga progresiva
 tags: images, performance, expo-image, ui

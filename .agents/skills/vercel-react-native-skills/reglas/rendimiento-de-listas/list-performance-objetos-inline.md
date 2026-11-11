@@ -1,5 +1,4 @@
 ---
-title: Evita objetos inline en renderItem
 impact: HIGH
 impactDescription: evita re-renders innecesarios de los elementos de lista memoizados
 tags: lists, performance, flatlist, virtualization, memo

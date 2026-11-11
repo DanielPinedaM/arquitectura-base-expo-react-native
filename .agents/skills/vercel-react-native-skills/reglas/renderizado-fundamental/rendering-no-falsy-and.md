@@ -1,5 +1,4 @@
 ---
-title: Nunca uses && con valores potencialmente falsy
 impact: CRITICAL
 impactDescription: evita crashes en producción
 tags: rendering, conditional, jsx, crash

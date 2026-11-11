@@ -1,5 +1,4 @@
 ---
-title: Anima transform y opacity en lugar de propiedades de layout
 impact: HIGH
 impactDescription: animaciones aceleradas por GPU, sin recálculo de layout
 tags: animation, performance, reanimated, transform, opacity

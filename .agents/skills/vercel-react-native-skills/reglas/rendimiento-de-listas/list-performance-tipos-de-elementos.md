@@ -1,5 +1,4 @@
 ---
-title: Usa tipos de elementos para listas heterogéneas
 impact: HIGH
 impactDescription: reciclaje eficiente, menos layout thrashing
 tags: list, performance, recycling, heterogeneous, LegendList

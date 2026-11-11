@@ -1,5 +1,4 @@
 ---
-title: Dispatch updaters de useState para el estado que depende del valor actual
 impact: MEDIUM
 impactDescription: evita stale closures, evita re-renders innecesarios
 tags: state, hooks, useState, callbacks

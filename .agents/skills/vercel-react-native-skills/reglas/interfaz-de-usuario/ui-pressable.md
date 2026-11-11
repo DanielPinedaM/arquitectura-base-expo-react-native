@@ -1,5 +1,4 @@
 ---
-title: Usa Pressable en lugar de los componentes Touchable
 impact: LOW
 impactDescription: API moderna, más flexible
 tags: ui, pressable, touchable, gestures

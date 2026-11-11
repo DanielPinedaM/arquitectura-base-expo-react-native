@@ -1,11 +1,10 @@
 ---
-title: Usa .get() y .set() para los shared values de Reanimated (no .value)
 impact: LOW
 impactDescription: necesario para la compatibilidad con React Compiler
 tags: reanimated, react-compiler, shared-values
 ---
 
-## Usa .get() y .set() para los shared values con React Compiler
+## Usa .get() y .set() para los shared values de Reanimated (no .value)
 
 Con React Compiler habilitado, usa `.get()` y `.set()` en lugar de leer o
 escribir `.value` directamente en los shared values de Reanimated. El compiler no puede rastrear

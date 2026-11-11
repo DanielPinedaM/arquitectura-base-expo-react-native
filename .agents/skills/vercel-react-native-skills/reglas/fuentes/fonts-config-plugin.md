@@ -1,5 +1,4 @@
 ---
-title: Carga las fuentes de forma nativa en tiempo de build
 impact: LOW
 impactDescription: fuentes disponibles al iniciar, sin carga asíncrona
 tags: fonts, expo, performance, config-plugin

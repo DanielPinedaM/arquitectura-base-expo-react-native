@@ -1,5 +1,4 @@
 ---
-title: Usa menús nativos para dropdowns y context menus
 impact: HIGH
 impactDescription: accesibilidad nativa, UX consistente con la plataforma
 tags: user-interface, menus, context-menus, zeego, accessibility

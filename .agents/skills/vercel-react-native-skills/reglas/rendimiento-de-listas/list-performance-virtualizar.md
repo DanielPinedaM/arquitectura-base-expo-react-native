@@ -1,5 +1,4 @@
 ---
-title: Usa un virtualizador de listas para cualquier lista
 impact: HIGH
 impactDescription: menos memoria, montajes más rápidos
 tags: lists, performance, virtualization, scrollview

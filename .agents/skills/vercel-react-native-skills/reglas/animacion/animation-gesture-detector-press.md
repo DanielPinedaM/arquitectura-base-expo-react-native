@@ -1,5 +1,4 @@
 ---
-title: Usa GestureDetector para estados de press animados
 impact: MEDIUM
 impactDescription: animaciones en el UI thread, feedback de press más fluido
 tags: animation, gestures, press, reanimated

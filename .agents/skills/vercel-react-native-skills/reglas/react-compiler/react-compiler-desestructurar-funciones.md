@@ -1,11 +1,10 @@
 ---
-title: Desestructura las funciones al inicio del render (React Compiler)
 impact: HIGH
 impactDescription: referencias estables, menos re-renders
 tags: rerender, hooks, performance, react-compiler
 ---
 
-## Desestructura las funciones al inicio del render
+## Desestructura las funciones al inicio del render (React Compiler)
 
 Esta regla solo aplica si estás usando React Compiler.
 

@@ -1,5 +1,4 @@
 ---
-title: Usa Galeria para galerías de imágenes y lightbox
 impact: MEDIUM
 impactDescription:
   shared element transitions nativas, pinch-to-zoom, pan-to-close

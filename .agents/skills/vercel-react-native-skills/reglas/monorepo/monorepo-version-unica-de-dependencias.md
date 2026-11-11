@@ -1,5 +1,4 @@
 ---
-title: Usa una única versión de cada dependencia en todo el monorepo
 impact: MEDIUM
 impactDescription: evita bundles duplicados y conflictos de versiones
 tags: monorepo, dependencies, installation

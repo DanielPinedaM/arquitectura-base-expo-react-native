@@ -1,5 +1,4 @@
 ---
-title: Importa desde la carpeta del design system
 impact: LOW
 impactDescription: permite cambios globales y una refactorización sencilla
 tags: imports, architecture, design-system

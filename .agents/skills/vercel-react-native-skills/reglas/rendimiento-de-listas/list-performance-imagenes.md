@@ -1,5 +1,4 @@
 ---
-title: Usa imágenes comprimidas en las listas
 impact: HIGH
 impactDescription: tiempos de carga más rápidos, menos memoria
 tags: lists, images, performance, optimization

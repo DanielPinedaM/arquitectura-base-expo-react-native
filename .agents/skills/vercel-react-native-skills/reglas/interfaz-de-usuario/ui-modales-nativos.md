@@ -1,5 +1,4 @@
 ---
-title: Usa modales nativos en lugar de bottom sheets basados en JS
 impact: HIGH
 impactDescription: rendimiento, gestos y accesibilidad nativos
 tags: modals, bottom-sheet, native, react-navigation

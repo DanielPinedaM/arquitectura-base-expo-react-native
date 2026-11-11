@@ -1,5 +1,4 @@
 ---
-title: El estado debe representar el ground truth
 impact: HIGH
 impactDescription: lógica más limpia, depuración más sencilla, una única fuente de verdad
 tags: state, derived-state, reanimated, hooks

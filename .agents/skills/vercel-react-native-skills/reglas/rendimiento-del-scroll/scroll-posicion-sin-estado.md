@@ -1,5 +1,4 @@
 ---
-title: Nunca rastrees la posición del scroll en useState
 impact: HIGH
 impactDescription: evita el render thrashing durante el scroll
 tags: scroll, performance, reanimated, useRef

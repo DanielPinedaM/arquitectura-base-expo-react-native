@@ -1,5 +1,4 @@
 ---
-title: Envuelve los strings en componentes Text
 impact: CRITICAL
 impactDescription: evita crashes en runtime
 tags: rendering, text, core

@@ -1,5 +1,4 @@
 ---
-title: Usa contentInsetAdjustmentBehavior para las safe areas
 impact: MEDIUM
 impactDescription: manejo nativo de la safe area, sin layout shifts
 tags: safe-area, scrollview, layout

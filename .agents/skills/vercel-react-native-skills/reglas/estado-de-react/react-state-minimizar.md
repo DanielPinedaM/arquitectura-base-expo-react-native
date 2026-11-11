@@ -1,5 +1,4 @@
 ---
-title: Minimiza las variables de estado y deriva los valores
 impact: MEDIUM
 impactDescription: menos re-renders, menos desincronización del estado
 tags: state, derived-state, hooks, optimization

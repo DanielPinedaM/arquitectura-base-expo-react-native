@@ -1,5 +1,4 @@
 ---
-title: Pasa primitivos a los elementos de la lista para la memoization
 impact: HIGH
 impactDescription: permite una comparación efectiva con memo()
 tags: lists, performance, memo, primitives

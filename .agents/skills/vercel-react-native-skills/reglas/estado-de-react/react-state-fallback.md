@@ -1,5 +1,4 @@
 ---
-title: Usa un estado de fallback en lugar de initialState
 impact: MEDIUM
 impactDescription: fallbacks reactivos sin sincronización
 tags: state, hooks, derived-state, props, initialState

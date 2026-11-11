@@ -1,11 +1,10 @@
 ---
-title: Haz hoisting de los callbacks a la raíz de las listas
 impact: MEDIUM
 impactDescription: Menos re-renders y listas más rápidas
 tags: tag1, tag2
 ---
 
-## Callbacks para el rendimiento de listas
+## Haz hoisting de los callbacks a la raíz de las listas
 
 **Impacto: HIGH (Menos re-renders y listas más rápidas)**
 

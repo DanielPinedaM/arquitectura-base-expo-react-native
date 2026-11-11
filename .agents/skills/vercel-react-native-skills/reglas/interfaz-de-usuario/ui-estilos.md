@@ -1,5 +1,4 @@
 ---
-title: Patrones modernos de estilos en React Native
 impact: MEDIUM
 impactDescription: diseño consistente, bordes más suaves, layouts más limpios
 tags: styling, css, layout, shadows, gradients

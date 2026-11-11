@@ -1,5 +1,4 @@
 ---
-title: Mantén ligeros los elementos de la lista
 impact: HIGH
 impactDescription: reduce el tiempo de render de los elementos visibles durante el scroll
 tags: lists, performance, virtualization, hooks

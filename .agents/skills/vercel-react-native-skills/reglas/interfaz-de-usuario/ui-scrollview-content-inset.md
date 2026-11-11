@@ -1,5 +1,4 @@
 ---
-title: Usa contentInset para el espaciado dinámico del ScrollView
 impact: LOW
 impactDescription: actualizaciones más fluidas, sin recálculo de layout
 tags: scrollview, layout, contentInset, performance

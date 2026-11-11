@@ -1,5 +1,4 @@
 ---
-title: Optimiza el rendimiento de las listas con referencias de objetos estables
 impact: CRITICAL
 impactDescription: la virtualización depende de la estabilidad de las referencias
 tags: lists, performance, flatlist, virtualization

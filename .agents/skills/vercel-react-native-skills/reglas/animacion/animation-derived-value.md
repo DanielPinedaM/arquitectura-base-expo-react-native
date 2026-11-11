@@ -1,5 +1,4 @@
 ---
-title: Prefiere useDerivedValue en lugar de useAnimatedReaction
 impact: MEDIUM
 impactDescription: código más limpio, rastreo automático de dependencias
 tags: animation, reanimated, derived-value

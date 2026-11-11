@@ -1,5 +1,4 @@
 ---
-title: Usa compound components en lugar de children polimórficos
 impact: MEDIUM
 impactDescription: composición flexible, API más clara
 tags: design-system, components, composition

@@ -1,5 +1,4 @@
 ---
-title: Haz hoisting de la creación de formatters de Intl
 impact: LOW-MEDIUM
 impactDescription: evita la recreación costosa de objetos
 tags: javascript, intl, optimization, memoization

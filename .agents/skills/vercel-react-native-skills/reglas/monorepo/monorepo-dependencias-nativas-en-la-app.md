@@ -1,5 +1,4 @@
 ---
-title: Instala las dependencias nativas en el directorio de la app
 impact: CRITICAL
 impactDescription: necesario para que funcione el autolinking
 tags: monorepo, native, autolinking, installation

@@ -1,5 +1,4 @@
 ---
-title: Medir las dimensiones de las vistas
 impact: MEDIUM
 impactDescription: medición síncrona, evita re-renders innecesarios
 tags: layout, measurement, onLayout, useLayoutEffect
